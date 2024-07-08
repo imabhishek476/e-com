@@ -7,7 +7,7 @@ import Mobile from "./mobile";
 
 function index() {
   return (
-    <div className="absolute top-[92rem] right-0 text-white w-[80%] my-6 ml-6">
+    <div className=" text-white my-6 ml-6">
       <div className="flex gap-4">
         <Shoes />
         <div className="flex flex-col gap-7">

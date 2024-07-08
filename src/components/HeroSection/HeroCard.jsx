@@ -4,26 +4,19 @@ import { HiArrowLongRight } from "react-icons/hi2";
 
 export default function HeroCard({ title , color, img}) {
   return (
-    <div className={`py-4 w-[290px] h-[180px] bg-${color}-400 rounded-md m-4 flex`}>
+    <div className={`py-4 h-[180px] rounded-md m-4 flex w-full bg-cover h-[40vh]`} style={{backgroundImage:`url(${img})`}}>
       <div className="flex flex-col m-3 mt-0">
-        <span className="text-xl drop-shadow-3xl text-ellipsis">{title}</span>
+        <span className="text-lg font-semibold drop-shadow-3xl text-ellipsis">{title}</span>
         <div>
           <span>Starting at Rs: 1099</span>
-          <hr className="border-t-4 mt-3 border-black w-[160px]" />
-          <div className="flex items-center gap-2 mt-4">
+          <hr className="border-t-[3px] rounded-full mt-3 border-black w-[10vw]" />
+          <a href="#" className="flex items-center gap-2 mt-4 cursor-pointer">
             <span>Shop it now</span>
             <span>
               <HiArrowLongRight />
             </span>
-          </div>
+          </a>
         </div>
-      </div>
-      <div>
-        <img
-            className="h-[160px] w-[130px] bg-transparent mix-blend-multiply"
-          src={img}
-          alt=""
-        />
       </div>
     </div>
   );

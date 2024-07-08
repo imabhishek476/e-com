@@ -2,7 +2,7 @@ import React from "react";
 
 function ProductCard() {
   return (
-    <div className=" rounded-md shadow-2xl w-[180px]">
+    <div className=" rounded-md shadow-2xl w-[14vw]">
       <div className="m-3 ml-10">
         <img
           className="h-[100px] bg-transparent mix-blend-darken"

@@ -5,7 +5,7 @@ import { IoLogoFacebook } from "react-icons/io";
 
 function index() {
   return (
-    <div className="absolute top-[200rem] left-0 text-white w-[100%] bg-gray-900 z-10 p-10">
+    <div className=" text-white bg-gray-900 z-10 p-10">
       <div className="flex gap-4 justify-between mx-4">
         <div className="flex flex-col gap-2">
           <span className="text-lg text-pink-600">Customer service</span>

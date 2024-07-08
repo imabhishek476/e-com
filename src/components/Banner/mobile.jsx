@@ -2,7 +2,7 @@ import React from "react";
 
 function mobile() {
   return (
-    <div className="w-[40%] h-[500px] bg-black rounded-lg my-[160px]">
+    <div className="w-[40%] h-[120vh] bg-black rounded-lg">
       <div className="p-10">
         <div className="text-xl">
           Get up to <span className="text-2xl text-red-800">25% OFF</span>
@@ -20,9 +20,9 @@ function mobile() {
           </button>
         </div>
       </div>
-      <div className="">
+      <div className="w-[32.5vw] h-[54.4vh] rounded-lg">
         <img
-          className="object-contain h-[450px]"
+          className="object-cover w-[32.5vw] h-[54.2vh] rounded-l"
           src="https://raw.githubusercontent.com/imabhishek476/images/main/mobileCut.png"
           alt=""
         />
