@@ -7,7 +7,7 @@ function index() {
       <div className="m-4">
         <span className="text-xl font-semibold">Top sale</span>
         {/* <div className="flex overflow-x-scroll scrollbar-hidden"> */}
-          <div className="flex justify-around flex-wrap gap-2">
+          <div className="flex justify-around flex-wrap gap-2 my-4">
             <ProductCard />
             <ProductCard />
             <ProductCard />

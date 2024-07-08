@@ -13,4 +13,3 @@ function index() {
 }
 
 export default index;
-// style={{backgroundImage:"url('https://pitamber-ecommerce.netlify.app/static/media/menImg.0615ff7c719713657792.jpg')"}}

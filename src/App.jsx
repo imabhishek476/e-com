@@ -7,6 +7,8 @@ import TopSale from "./components/Products/TopSale/index";
 import Footer from "./components/Footer/index";
 import Banner from "./components/Banner/index";
 import Gurrantee from "./components/Service/Gurrantee";
+import ProductCategory from "./components/Products/Category";
+import NewArrival from "./components/Products/NewArrival";
 
 function App() {
   return (
@@ -23,8 +25,9 @@ function App() {
           <Popular />
           <Gurrantee/>
           <TopSale />
-          <TopSale />
+          <ProductCategory/>
           <Banner />
+          <NewArrival/>
           <Footer />
         </div>
       </div>

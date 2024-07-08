@@ -25,14 +25,14 @@ function Navbar() {
           <VscSettings className="absolute right-3 top-3 text-gray-600" />
         </div>
         <div className="flex justify-center items-center">
-            <div className=" bg-gray-500 rounded-md text-2xl h-[40px] mr-5">
+            <div className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer">
                 <MdShoppingCart className="m-2"/>
             </div>
-            <div className=" bg-gray-500 rounded-md text-2xl h-[40px] mr-5">
+            <div className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer">
                 <MdNotificationsActive className="m-2"/>
             </div>
-            <div className="bg-blue-500 rounded-md text-2xl h-[40px] mr-5">
-              <FaUserLarge className="m-2 text-red-600"/>
+            <div className="bg-cyan-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer">
+              <FaUserLarge className="m-2 text-red-500"/>
             </div>
         </div>
       </div>

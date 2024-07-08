@@ -1,4 +1,3 @@
-import React from "react";
 
 function ProductCard() {
 
@@ -9,7 +8,7 @@ function ProductCard() {
   ]
 
   return (
-    <div className=" rounded-xl shadow-md border group max-w-[14vw]">
+    <div className=" rounded-xl shadow-md border group w-[14vw]">
       <div className="m-8">
         <img
           className="h-[100px] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
@@ -18,7 +17,7 @@ function ProductCard() {
         />
       </div>
       <div className="flex flex-col justify-center items-start m-3">
-        <span className="font-semibold text-xs">Oversize Men's t-shirt</span>
+        <span className="font-semibold text-xs">Oversize Men&apos;s t-shirt</span>
         <span className="font-semibold text-xs">Price: $ 599</span>
         <div className="flex justify-between items-center w-full mr-3 my-2 font-semibold text-xs">
           <div>⭐ 4.8</div>
