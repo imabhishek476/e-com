@@ -9,7 +9,7 @@ function ProductCard() {
   ]
 
   return (
-    <div className=" rounded-md shadow-lg w-[14vw]">
+    <div className=" rounded-xl shadow-md border group max-w-[14vw]">
       <div className="m-8">
         <img
           className="h-[100px] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"

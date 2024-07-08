@@ -19,9 +19,16 @@ function index() {
       <div>
         <Sale/>
       </div>
-      <div className="flex">
+      <div className="flex gap-2">
         <Mobile/>
+        <div className=" grid sm:grid-cols-3 grid-cols-2 sm:gap-6 gap-3 place-items-center">
         <CameraCard/>
+        <CameraCard/>
+        <CameraCard/>
+        <CameraCard/>
+        <CameraCard/>
+        <CameraCard/>
+        </div>
       </div>
     </div>
   );
