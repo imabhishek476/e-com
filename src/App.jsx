@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Hero from "./components/HeroSection/index";
 import Sidebar from "./components/Navbar/Sidebar";
@@ -9,6 +6,7 @@ import Popular from "./components/Products/Popular/index";
 import TopSale from "./components/Products/TopSale/index";
 import Footer from "./components/Footer/index";
 import Banner from "./components/Banner/index";
+import Gurrantee from "./components/Service/Gurrantee";
 
 function App() {
   return (
@@ -23,6 +21,7 @@ function App() {
           <Navbar />
           <Hero />
           <Popular />
+          <Gurrantee/>
           <TopSale />
           <TopSale />
           <Banner />

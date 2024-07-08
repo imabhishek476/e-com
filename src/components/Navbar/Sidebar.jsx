@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { BsShop } from "react-icons/bs";
 import {
   FaHome,
-  FaCartPlus,
   FaHeart,
   FaUser,
   FaTags,
@@ -10,6 +10,7 @@ import {
   FaStar,
   FaFire
 } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { MdShoppingCart } from "react-icons/md";
 
 const sideList = [
@@ -23,19 +24,21 @@ const sideList = [
     id: 2,
     title: "Shop",
     route: "shop",
-    icon: <BsShop className="" />
-  },
-  {
-    id: 3,
-    title: "Cart",
-    route: "cart",
-    icon: <MdShoppingCart className="" />
-  },
-  {
-    id: 4,
-    title: "Saved",
-    route: "saved",
-    icon: <FaHeart className=" text-red-600" />
+    icon: <BsShop className="" />,
+    list: [
+      {
+        id: 21,
+        title: "Cart",
+        route: "cart",
+        icon: <MdShoppingCart className="" />
+      },
+      {
+        id: 22,
+        title: "Saved",
+        route: "saved",
+        icon: <FaHeart className="text-red-600" />
+      }
+    ]
   },
   {
     id: 6,
@@ -73,9 +76,12 @@ const sideList = [
     route: "popular",
     icon: <FaFire className="" />
   }
-]
+];
 
 const Sidebar = () => {
+  const [open, setOpen] = useState(false);
+  const toggleShop = () => setOpen(!open);
+
   return (
     <div className="">
       <div className="m-4">
@@ -87,19 +93,58 @@ const Sidebar = () => {
       </div>
       <div>
         <ul className="list-none my-4 ml-2 mr-8 flex flex-col">
-          {
-            sideList?.map((item)=>(
-                <li key={item.id} className="text-xs px-8 pl-5 hover:bg-gray-300 rounded-lg hover:text-gray-800">
+          {sideList?.map((item) => (
+            <div key={item.id} className="flex flex-col">
+              <li
+                onClick={() => {
+                  item.title === "Shop" && toggleShop();
+                }}
+                style={{
+                  display: `${
+                    item?.title === "Cart" || (item?.title === "Saved" && open)
+                      ? "none"
+                      : ""
+                  }`
+                }}
+                className="text-xs px-8 pl-5 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
+              >
                 <div className="flex items-center m-2 gap-7">
                   {item.icon}
                   <span>{item.title}</span>
+                  {item.title === "Shop" && (
+                    <div> {open ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
+                  )}
                 </div>
               </li>
-            ))
-          }
+              {item.title === "Shop" && open && (
+                <ul className="list-none my-2 ml-6 flex flex-col">
+                  {item.list.map((subItem) => (
+                    <li
+                      key={subItem.id}
+                      className="text-xs px-8 pl-0 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
+                    >
+                      <div className="flex items-center m-2 gap-7 text-black">
+                        {subItem.icon}
+                        <span>{subItem.title}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
         </ul>
-        <div className="my-4 ml-2 mr-8">
-          <img src="https://pitamber-ecommerce.netlify.app/static/media/Dash-Need.f43b91919e370cb7b12c.png" alt="" />
+        <div className="my-4 ml-2 mr-8 relative">
+          <div className="text-center mb-4 absolute inset-0 flex flex-col justify-center items-center mt-10">
+            <h3 className="text-sm font-bold">Need Help!</h3>
+            <p className="px-4 text-[9px]  mt-2 mx-3">About account management, ordering, payment & refund</p>
+            <button className="bg-blue-700 text-xs text-white rounded-md px-2 py-1 my-3 mt-8">Customer Service</button>
+          </div>
+          <img
+            src="https://pitamber-ecommerce.netlify.app/static/media/Dash-Need.f43b91919e370cb7b12c.png"
+            alt="Additional Info"
+            className=""
+          />
         </div>
       </div>
     </div>

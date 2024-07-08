@@ -1,5 +1,3 @@
-import React from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { HiArrowLongRight } from "react-icons/hi2";
 
 export default function HeroCard({ title , color, img}) {
