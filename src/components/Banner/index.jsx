@@ -8,20 +8,20 @@ import CameraCard from "../Products/Camers.jsx/CameraCard";
 
 function index() {
   return (
-    <div className=" text-white my-6 ml-3 mr-5">
-      <div className="flex gap-4">
+    <div className="container text-white">
+      <div className="flex justify-evenly gap-1">
         <Shoes />
         <div className="flex flex-col gap-7">
           <Sunglasses />
           <Bags />
         </div>
       </div>
-      <div>
+      <div className="ml-6">
         <Sale/>
       </div>
-      <div className="flex gap-2">
+      <div className="container w-[96%] flex justify-around gap-1 ml-5">
         <Mobile/>
-        <div className=" grid sm:grid-cols-3 grid-cols-2 sm:gap-6 gap-3 place-items-center">
+        <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-6 gap-3 place-items-center">
         <CameraCard/>
         <CameraCard/>
         <CameraCard/>

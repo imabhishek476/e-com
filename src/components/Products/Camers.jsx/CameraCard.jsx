@@ -2,10 +2,10 @@ import React from "react";
 
 function CameraCard() {
   return (
-    <div className="rounded-x overflow-hidden  transform transition-all hover:translate-y-2 duration-300 relative shadow-xl group max-w-[300px] ">
+    <div className="rounded-x overflow-hidden  transform transition-all hover:translate-y-2 duration-300 relative shadow-xl border group max-w-[300px] ">
       <div className=" flex justify-center items-center">
         <img
-            className="w-[10vw]"
+            className="w-[9vw]"
           src="https://pitamber-ecommerce.netlify.app/static/media/camera.3a9beb2112dd633a9630.jpg"
           alt=""
         />

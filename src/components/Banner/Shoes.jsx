@@ -3,7 +3,7 @@ import React from "react";
 function Shoes() {
   return (
     <div
-      className="w-[80vw] h-[97vh] bg-gray-200 rounded-lg bg-cover relative"
+      className="w-[53vw] h-[97vh] bg-gray-200 rounded-lg bg-cover relative"
       style={{
         backgroundImage:
           "url('https://pitamber-ecommerce.netlify.app/static/media/shoes.1d37ddcad4ee5b1276cb.jpg')",

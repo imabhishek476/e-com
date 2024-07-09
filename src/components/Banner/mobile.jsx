@@ -20,9 +20,9 @@ function mobile() {
           </button>
         </div>
       </div>
-      <div className="w-[32.2vw] h-[54.4vh] rounded-lg">
+      <div className="w-[31vw] rounded-lg">
         <img
-          className="object-cover w-[32.5vw] h-[54.2vh] rounded-l"
+          className="object-cover w-[32.5vw] h-[50vh] rounded-l"
           src="https://raw.githubusercontent.com/imabhishek476/images/main/mobileCut.png"
           alt=""
         />
