@@ -14,12 +14,10 @@ function App() {
   return (
     <>
       <div className="grid grid-cols-12 bg-black">
-        {/* Sidebar will span 2 columns by default, and adjust to 3 columns on medium and large screens */}
-        <div className="col-span-3 fixed h-screen bg-gray-100 md:col-span-3 lg:col-span-3 w-[18%]">
+        <div className="col-span-3 fixed h-screen bg-gray-100 w-[18%] hidden lg:block md:hidden">
           <Sidebar />
         </div>
-        {/* Main content will start from the next column after the sidebar ends and span the remaining columns */}
-        <div className="col-start-3 col-end-13 sticky bg-white md:col-start-3 lg:col-start-3">
+        <div className="flex flex-col col-start-1 md:col-start-1 lg:col-start-3 col-end-13 md:col-end-13 lg:col-end-13 sticky bg-white container lg:container md:container">
           <Navbar />
           <Hero />
           <Popular />

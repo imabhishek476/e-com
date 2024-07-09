@@ -109,7 +109,7 @@ const Sidebar = () => {
                 className="text-xs px-8 pl-5 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
               >
                 <div className="flex items-center m-2 gap-7">
-                  {item.icon}
+                  <div className="text-[0.8rem]">{item.icon}</div>
                   <span>{item.title}</span>
                   {item.title === "Shop" && (
                     <div> {open ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
@@ -124,7 +124,7 @@ const Sidebar = () => {
                       className="text-xs px-8 pl-0 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
                     >
                       <div className="flex items-center m-2 gap-7 text-black">
-                        {subItem.icon}
+                      <div className="text-[0.8rem]">{subItem.icon}</div>
                         <span>{subItem.title}</span>
                       </div>
                     </li>
