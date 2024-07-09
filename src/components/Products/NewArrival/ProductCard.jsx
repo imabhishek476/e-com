@@ -3,7 +3,7 @@ function ProductCard({ img, price, category }) {
     <div className="w-[15vw] ">
       <div className="rounded-xl bg-slate-500 relative transform transition hover:scale-90 shadow-xl duration-300 ease-in-out group object-cover">
         <div className="">
-          <img className=" h-[55vh]" src={img} alt="" />
+          <img className="h-[50vh] object-scale-down" src={img} alt="" />
         </div>
         <div className="absolute top-[4%] right-[5%]">
           <button className="bg-blue-950 rounded-md text-white px-3 pb-[1px]">

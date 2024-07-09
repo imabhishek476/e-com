@@ -38,7 +38,7 @@ function index() {
   return (
     <div className=" text-black">
       <div className="m-4">
-        <span className="text-xl font-semibold">Shop By Categories</span>
+        <span className="text-xl font-semibold">New Arrival</span>
           <div className="flex justify-around flex-nowrap gap-2 my-4">
             {
               ProductCategory && ProductCategory?.map((item)=>(
