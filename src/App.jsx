@@ -13,7 +13,7 @@ import NewArrival from "./components/Products/NewArrival";
 function App() {
   return (
     <>
-      <div className="grid grid-cols-12 bg-black">
+      <div className="grid grid-cols-12 bg-white">
         <div className="col-span-3 fixed h-screen bg-gray-100 w-[18%] hidden lg:block md:hidden">
           <Sidebar />
         </div>
