@@ -2,7 +2,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 
 export default function HeroCard({ title , color, img}) {
   return (
-    <div className={`py-4 relative shadow-lg border rounded-md shadow-gray-400 m-4 flex w-full bg-cover h-[90vh] lg:h-[37vh]  `} style={{backgroundImage:`url(${img})`}}>
+    <div className={`py-4 relative shadow-lg border rounded-md shadow-gray-400 m-4 flex w-full bg-cover h-[35vh] md:h-[90vh] lg:h-[38vh]`} style={{backgroundImage:`url(${img})`}}>
       <div className="flex flex-col m-3 mt-0">
         <span className="text-lg font-semibold drop-shadow-3xl text-ellipsis">{title}</span>
         <div>

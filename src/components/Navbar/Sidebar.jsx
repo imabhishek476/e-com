@@ -124,7 +124,7 @@ const Sidebar = () => {
                       className="text-xs px-8 pl-0 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
                     >
                       <div className="flex items-center m-2 gap-7 text-black">
-                      <div className="text-[0.8rem]">{subItem.icon}</div>
+                        <div className="text-[0.8rem]">{subItem.icon}</div>
                         <span>{subItem.title}</span>
                       </div>
                     </li>
@@ -135,16 +135,20 @@ const Sidebar = () => {
           ))}
         </ul>
         <div className="my-4 ml-2 mr-8 relative">
-          <div className="text-center mb-4 absolute inset-0 flex flex-col justify-center items-center mt-10">
-            <h3 className="text-sm font-bold">Need Help!</h3>
-            <p className="px-4 text-[9px]  mt-2 mx-3">About account management, ordering, payment & refund</p>
-            <button className="bg-blue-700 text-xs text-white rounded-md px-2 py-1 my-3 mt-8">Customer Service</button>
-          </div>
           <img
             src="https://pitamber-ecommerce.netlify.app/static/media/Dash-Need.f43b91919e370cb7b12c.png"
             alt="Additional Info"
             className=""
           />
+          <div className="absolute flex flex-col justify-between mr-3 items-center text-center max-w-[220px] top-[50%] left-[9%] -translate-y-[40%] space-y-3">
+            <h3 className="text-sm font-bold">Need Help!</h3>
+            <p className="px-4 text-[10px]  my-2">
+              About account management, ordering, payment & refund
+            </p>
+            <button className="bg-blue-700 text-xs text-white rounded-md px-2 py-1 my-3 mt-8">
+              Customer Service
+            </button>
+          </div>
         </div>
       </div>
     </div>

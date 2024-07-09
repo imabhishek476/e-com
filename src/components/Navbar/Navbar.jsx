@@ -9,7 +9,7 @@ import { VscSettings } from "react-icons/vsc";
 
 function Navbar() {
   return (
-    <div className="container sticky top-0 bg-white text-black z-10 p-3">
+    <div className="container sticky top-0 bg-white text-black z-10 p-3 pr-0">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <span className="font-semibold">Top Fashion Brands</span>
