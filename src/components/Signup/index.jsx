@@ -10,7 +10,7 @@ function Index() {
   return (
     <div className="container flex h-screen rounded-lg bg-[#050A44]">
       {/* Left Section */}
-      <div className="bg-[#050A44] w-2/5 flex flex-col text-white relative p-5">
+      <div className="bg-[#050A44] w-2/5 flex flex-col text-white relative p-5 ">
         {/* Logo */}
         <div className="">
           <img className="w-[180px]" src={logo} alt="Logo" />
@@ -39,22 +39,22 @@ function Index() {
 
       {/* Right Section (Signup Form) */}
       <div className="bg-white w-3/5 flex flex-col rounded-lg justify-center items-center">
-        <div className="container w-4/5 px-10 flex flex-col">
+        <div className="container w-4/5 px-10">
           <h1 className="text-4xl font-bold drop-shadow-2xl text-[#EB268F] mb-4">
             Create Account
           </h1>
           <form className="container  placeholder:text-sm" action="">
-            <div className="flex justify-between">
+            <div className="flex justify-items-center">
               <div className="relative">
                 <input
-                  className="border border-black outline-none rounded-md ml-0 py-3 px-2 mx-4 w-[19.4vw]"
+                  className="border border-black outline-none rounded-md ml-0 py-3 px-2 mx-4 w-[15vw] lg:w-[19.4vw] md:w-[15vw]"
                   type="text"
                   placeholder="Firstname"
                 />
               </div>
               <div>
                 <input
-                  className="border border-black rounded-md placeholder:text-sm py-3 px-2 mx-4 w-[20vw]"
+                  className="border border-black rounded-md placeholder:text-sm py-3 px-2 mx-4 w-[15vw] lg:w-[20vw] md:w-[15vw]"
                   type="text"
                   placeholder="Lastname"
                 />
