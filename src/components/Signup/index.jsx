@@ -11,6 +11,7 @@ import EventModal from "./EventModal";
 
 function Index() {
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [showEventModal, setShowEventModal] = useState(false);
   const [checked, setChecked] = useState(false)
   const [SignupData, setSignupData] = useState({
@@ -106,11 +107,22 @@ function Index() {
                 />
                 <input
                   className="border py-3 px-2 my-3 border-black rounded-md"
-                  type="password"
+                  type={showPassword? "text": "password"}
                   required
                   minLength={8}
                   placeholder="Password"
                 />
+                <div className="flex items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  className="form-checkbox border-2 border-[#EB268F] rounded-sm"
+                  style={{ borderColor: "pink" }}
+                  // checked={isChecked3}
+                  required
+                  onChange={(e) => setShowPassword(e.target.checked)}
+                />
+                <span>{showPassword ? "Hide" : "Show"} password</span>
+              </div>
                 <div>
                   <button className="container p-1 py-2 my-3 w-full border rounded-lg bg-[#EB268F] text-white font-semibold">
                     Create Account

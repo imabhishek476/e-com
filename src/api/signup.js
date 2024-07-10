@@ -5,7 +5,6 @@ const jwtsecret = 'myrandomjwtsecret12345';
 
 
 export const CustomerSignup = async (obj) => {
-    // console.log(accessToken)
     // const access = Cookies.get('accessToken');
     try {
 
