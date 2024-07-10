@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Login from './routes/Login'
 import Signup from './routes/Signup'
-import Random from './routes/Random/inde.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -26,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/random",
-    element: <Random/>,
+    element: <div>Hello World</div>,
   },
 ]);
 
