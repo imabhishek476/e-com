@@ -17,13 +17,15 @@ export const CustomerSignup = async (obj) => {
         headers,
         body: JSON.stringify(obj),
       });
+      const data = await response.json();
   
       // console.log(response);
-      if (response.status === 201) {
-        const data = await response.json();
+      if (response.ok) {
         document.cookie = `accessToken=${data.token}; path=/; max-age=86400; Secure; SameSite=Strict;`;
         console.log('get user profile', data);
         return { data };
+      }else if(data.message){
+        alert(`Error : ${data.message}`)
       }
     } catch (e) {
       console.log(e);
