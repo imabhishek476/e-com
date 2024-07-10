@@ -1,6 +1,8 @@
 const apiUrl = 'https://vibepulse.onrender.com';
 // const jwtsecret = 'myrandomjwtsecret12345';
+import Cookies from 'js-cookie';
 
+const access = Cookies.get('accessToken');
 
 
 
@@ -29,3 +31,22 @@ export const CustomerLogin = async (obj) => {
       console.log(e);
     }
 };
+
+export const fetchUserProfile = async()=>{
+  try {
+    let headers = new Headers();
+      headers.append('Authorization', 'Bearer ' + access);
+
+      const response = await fetch(apiUrl + '/auth/fetch', {
+        method: 'GET',
+        headers,
+      });
+      const data = await response.json();
+      console.log(data, response.ok)
+      if(response.ok){
+        return {data}
+      }
+  } catch (error) {
+    console.log(error);
+  }
+}

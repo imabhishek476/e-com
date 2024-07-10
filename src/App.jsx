@@ -9,8 +9,24 @@ import Banner from "./components/Banner/index";
 import Gurrantee from "./components/Service/Gurrantee";
 import ProductCategory from "./components/Products/Category";
 import NewArrival from "./components/Products/NewArrival";
+import { useEffect, useState } from "react";
+import { fetchUserProfile } from "./api/login";
 
 function App() {
+
+  const [userProfile, setUserProfile] = useState(null);
+
+  const fetchUserData = async()=>{
+    const data = await fetchUserProfile()
+    if(data){
+      setUserProfile(data.data)
+    }
+  }
+
+  useEffect(()=>{
+    fetchUserData()
+  },[])
+
   return (
     <>
       <div className="grid grid-cols-12 bg-white">
@@ -18,7 +34,7 @@ function App() {
           <Sidebar />
         </div>
         <div className="flex flex-col col-start-1 md:col-start-1 lg:col-start-3 col-end-13 md:col-end-13 lg:col-end-13 sticky bg-white container lg:container md:container">
-          <Navbar />
+          <Navbar userProfile={userProfile}/>
           <Hero />
           <Popular />
           <Gurrantee/>

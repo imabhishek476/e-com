@@ -12,7 +12,7 @@ import { VscSettings } from "react-icons/vsc";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({userProfile}) {
 
   const [isUser, setIsUser] = useState(false);
   const [isOpen, setIsOpen] = useState(isUser);
@@ -59,9 +59,9 @@ function Navbar() {
             </div>
 
             { isOpen &&
-              <div className="absolute top-10 -left-32 bg-gray-100 space-y-3 border rounded-md">
-              <div className="px-6 pt-2">
-                Welcome, Vijay
+              <div className="absolute top-10 -left-32 bg-gray-100 space-y-3 border rounded-md px-2">
+              <div className="pt-4 text-sm text-center">
+                Welcome, {userProfile?.firstname || "Customer"}
               </div>
               <hr className=""/>
               <ul className="px-6 space-y-2 text-xs text-center">
