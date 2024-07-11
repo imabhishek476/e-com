@@ -101,7 +101,6 @@ function Index() {
                   className="form-checkbox border-2 border-[#EB268F] rounded-sm"
                   style={{ borderColor: "pink" }}
                   // checked={isChecked3}
-                  required
                   onChange={(e) => setShowPassword(e.target.checked)}
                 />
                 <span>{showPassword ? "Hide" : "Show"} password</span>
