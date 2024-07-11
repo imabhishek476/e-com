@@ -18,6 +18,7 @@ import { VscSettings } from "react-icons/vsc";
 import logo from "../../assets/images/signup/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TbRectangleVerticalFilled } from "react-icons/tb";
+import { HiClipboardDocumentList } from "react-icons/hi2";
 
 const sideList = [
   {
@@ -90,12 +91,12 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const checkCurrentPage = (route) =>{
+  const checkCurrentPage = (route) => {
     // if(route === '\mens_wear' || route === '\mens_wear'){
     //   return true;
     // }
-    return location.pathname === route
-  }
+    return location.pathname === route;
+  };
 
   return (
     <div className="">
@@ -117,7 +118,9 @@ const Sidebar = () => {
                 className="flex items-center gap-2 text-xs hover:bg-gray-300 rounded-lg cursor-pointer"
               >
                 <div
-                  style={{ visibility: checkCurrentPage(item.route) ? "": "hidden" }}
+                  style={{
+                    visibility: checkCurrentPage(item.route) ? "" : "hidden"
+                  }}
                   className="text-pink-600"
                 >
                   <TbRectangleVerticalFilled />
@@ -164,6 +167,12 @@ const Sidebar = () => {
               Customer Service
             </button>
           </div>
+        </div>
+        <div className="mx-5">
+          <li className="list-none ml-6 flex items-center font-bold text-[#050a44]">
+            <i><HiClipboardDocumentList /></i>
+            <button onClick={()=>navigate('/terms&condition')} className="text-sm">Terms of Use</button>
+          </li>
         </div>
       </div>
     </div>

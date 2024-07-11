@@ -60,6 +60,10 @@ const router = createBrowserRouter([
     path: "/cart",
     element: <div className='flex'><Sidebar/><div>Your Cart</div></div>,
   },
+  {
+    path: "/terms&condition",
+    element: <div className='flex'><Sidebar/><div>Terms and Condition</div></div>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
