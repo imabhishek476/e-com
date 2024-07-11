@@ -9,14 +9,14 @@ import CameraCard from "../Products/Camers.jsx/CameraCard";
 function index() {
   return (
     <div className="container text-white">
-      <div className="flex justify-evenly gap-1">
+      <div className="flex mx-4 gap-5">
         <Shoes />
-        <div className="flex flex-col gap-7">
+        <div className="flex flex-col justify-between w-[29vw]">
           <Sunglasses />
           <Bags />
         </div>
       </div>
-      <div className="ml-6">
+      <div className="m-4">
         <Sale/>
       </div>
       <div className="container w-[96%] flex justify-around gap-1 ml-5">

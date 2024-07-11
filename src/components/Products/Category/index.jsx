@@ -44,7 +44,7 @@ function index() {
   return (
     <div className=" text-black">
       <div className="m-4">
-        <span className="text-xl font-semibold">Shop By Categories</span>
+        <span className="text-3xl text-[#050A44] font-semibold">Shop By Categories</span>
         <div className="flex overflow-x-scroll scrollbar-hidden">
           <div className="flex justify-around flex-nowrap gap-2 my-4">
             {
@@ -52,12 +52,6 @@ function index() {
                   <ProductCard key={item.id} img={item.image} item={item.itemTotal} category={item.type}/>
               ))
             }
-            {/* <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard /> */}
           </div>
         </div>
       </div>

@@ -1,22 +1,27 @@
+import RedShirt from '../../../assets/images/home/RedShirt.png'
+import BlackShirt from '../../../assets/images/home/BlackShirt.png'
+import BlueShirt from '../../../assets/images/home/BlueShirt.png'
+import WhiteShirt from '../../../assets/images/home/WhiteShirt.png'
 
 function ProductCard() {
 
   const shirtIMage =[
-    "https://pitamber-ecommerce.netlify.app/static/media/shirt4.ab2aaf5e098c4703af65.png",
-    "https://pitamber-ecommerce.netlify.app/static/media/shirt6.87e89a8c31c8d0bd3823.png",
-    "https://pitamber-ecommerce.netlify.app/static/media/shirt3.f1206c623516aaca288a.png"
+    BlackShirt,
+    RedShirt,
+    BlueShirt,
+    WhiteShirt,
   ]
 
   return (
-    <div className=" rounded-xl shadow-md border group w-[14vw]">
-      <div className="m-8">
+    <div className=" rounded-xl shadow-md border w-[14vw]">
+      <div className="p-4 flex items-center justify-center">
         <img
-          className="h-[100px] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
+          className="h-[120px] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
           src={shirtIMage[Math.floor(Math.random() * 3)]}
           alt=""
         />
       </div>
-      <div className="flex flex-col justify-center items-start m-3">
+      <div className="flex flex-col justify-center items-start m-3 p-1">
         <span className="font-semibold text-xs">Oversize Men&apos;s t-shirt</span>
         <span className="font-semibold text-xs">Price: $ 599</span>
         <div className="flex justify-between items-center w-full mr-3 my-2 font-semibold text-xs">

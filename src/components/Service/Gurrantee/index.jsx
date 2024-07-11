@@ -1,11 +1,15 @@
 import React from 'react'
+import truck from '../../../assets/images/home/truck.png'
+import oneVone from '../../../assets/images/home/1_1_return.png'
+import secure from '../../../assets/images/home/secure.png'
+import offers from '../../../assets/images/home/offers.png'
 
 function index() {
   return (
     <div className='container py-4  mr-4 flex justify-around'>
         <div className='flex items-center'>
             <div className='w-[6vw]'>
-                <img className='object-cover' src="https://pitamber-ecommerce.netlify.app/static/media/Shipping%20Van.225e3ee72c4201467457.png" alt="" />
+                <img className='object-cover' src={truck} alt="shipping" />
             </div>
             <div className='text-sm font-semibold'>
                 <div>Free Shipping</div>
@@ -14,7 +18,7 @@ function index() {
         </div>
         <div className='flex items-center'>
             <div className='w-[6vw]'>
-                <img className='object-cover' src="https://pitamber-ecommerce.netlify.app/static/media/return.f1328cf8050029a5ed52.png" alt="" />
+                <img className='object-cover' src={oneVone} alt="Returns" />
             </div>
             <div className='text-sm font-semibold'>
                 <div>1 & 1 Returns</div>
@@ -22,8 +26,8 @@ function index() {
             </div>
         </div>
         <div className='flex items-center'>
-            <div className='w-[3vw]'>
-                <img className='object-cover' src="https://pitamber-ecommerce.netlify.app/static/media/secure.8f56a5cb3ebd98cb9374.png" alt="" />
+            <div className='w-[4.5vw]'>
+                <img className='object-cover' src={secure} alt="Secure payment" />
             </div>
             <div className='text-sm font-semibold'>
                 <div>100% Secure Payment</div>
@@ -31,8 +35,8 @@ function index() {
             </div>
         </div>
         <div className='flex items-center'>
-            <div className='w-[6vw]'>
-                <img className='object-cover' src="https://pitamber-ecommerce.netlify.app/static/media/offer.0dfa5a1597b0b5b6c859.png" alt="" />
+            <div className='w-[4.5vw]'>
+                <img className='object-cover' src={offers} alt="Offers" />
             </div>
             <div className='text-sm font-semibold'>
                 <div>Daily Offers</div>

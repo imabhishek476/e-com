@@ -1,44 +1,64 @@
 import React from "react";
 import ProductCard from "./ProductCard";
+import BlackShortSleeveDress from "../../../assets/images/home/black-short-sleeve-dress.png"
+import LightBlueJeans from "../../../assets/images/home/light-blue-jeans.png"
+import RayBan from "../../../assets/images/home/ray-ban.png"
+import BlackCoat from "../../../assets/images/home/black-coat.png"
 
+// black-short-sleeve-dress
 const ProductCategory =[
   {
     id: 1,
-    type: "Men",
+    type: "Black Short Sleeve Dress",
     price: "$199",
-    image: "https://pitamber-ecommerce.netlify.app/static/media/ShopM.ec64ecb5e18ba3b8f96a.png",
+    image: BlackShortSleeveDress,
   },
   {
     id: 2,
-    type: "Women",
-    price: "$799",
-    image: "https://pitamber-ecommerce.netlify.app/static/media/ShopW.8f7ffd89cd7d4568ab5f.png",
+    type: "Black Coat Cosole",
+    price: "$250",
+  image: BlackCoat,
   },
   {
     id: 3,
-    type: "Vintage",
-    price: "8199",
-    image: "https://pitamber-ecommerce.netlify.app/static/media/Vintages.91aedfcc43ace3239527.png",
+    type: "Women Light Blue Jeans",
+    price: "$250",
+    image: LightBlueJeans,
   },
   {
     id: 4,
-    type: "Bags",
-    price: "$2049",
-    image: "https://pitamber-ecommerce.netlify.app/static/media/Bangs.8b76d8d98f0e4710386f.png",
+    type: "Ray Ban Glasses",
+    price: "$90",
+    image: RayBan,
   },
-  {
-    id: 5,
-    type: "Shoes",
-    price: "$2589",
-    image: "https://pitamber-ecommerce.netlify.app/static/media/shose.644f7932ea65eb193092.png",
-  },
+  
+  // {
+  //   id: 5,
+  //   type: "Shoes",
+  //   price: "$2589",
+  //   image: "https://pitamber-ecommerce.netlify.app/static/media/shose.644f7932ea65eb193092.png",
+  // },
 ]
 
 function index() {
   return (
     <div className=" text-black">
       <div className="m-4">
-        <span className="text-xl font-semibold">New Arrival</span>
+        <span className="text-3xl text-[#050A44] font-semibold">Our New Product</span>
+          <div className="flex justify-around flex-nowrap gap-2 my-4">
+            {
+              ProductCategory && ProductCategory?.map((item)=>(
+                  <ProductCard key={item.id} img={item.image} price={item.price} category={item.type}/>
+              ))
+            }
+          </div>
+          <div className="flex justify-around flex-nowrap gap-2 my-4">
+            {
+              ProductCategory && ProductCategory?.map((item)=>(
+                  <ProductCard key={item.id} img={item.image} price={item.price} category={item.type}/>
+              ))
+            }
+          </div>
           <div className="flex justify-around flex-nowrap gap-2 my-4">
             {
               ProductCategory && ProductCategory?.map((item)=>(

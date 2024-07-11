@@ -3,10 +3,10 @@ function ProductCard({img, item, category}) {
 
 
   return (
-    <div className=" rounded-xl shadow-md border group w-[14vw]">
-      <div className="m-8">
+    <div className=" rounded-xl shadow-md border group w-[15vw]">
+      <div className="">
         <img
-          className="h-[35vh] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
+          className="mr-7 h-[35vh] mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
           src={img}
           alt=""
         />

@@ -5,7 +5,7 @@ function index() {
   return (
     <div className=" text-black">
       <div className="m-4">
-        <span className="text-xl font-semibold">Most Popular products</span>
+        <span className="text-3xl text-[#050A44] font-semibold">Most Popular products</span>
         <div className="flex overflow-x-scroll scrollbar-hidden">
           <div className="flex justify-around flex-nowrap gap-2 my-4">
             <ProductCard />
