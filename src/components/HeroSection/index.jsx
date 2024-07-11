@@ -6,10 +6,10 @@ import kid from '../../assets/images/home/hero_kid.png'
 function index() {
   return (
     <div className=" text-black">
-      <div className="flex flex-wrap lg:flex-nowrap">
-        <HeroCard  title={"Men's Fashion Collection"} img={men} color={"blue-300"}/>
-        <HeroCard title={"Women's Fashion Collection"} img={women} color={"yellow-400"}/>
-        <HeroCard title={"Kid's wonder Fashion Collection"} img={kid} color={"pink-500"}/>
+      <div className="flex flex-wrap lg:flex-nowrap mx-1">
+        <HeroCard  title={"Men's Fashion Collection"} img={men} color={"[#8DB8CB]"}/>
+        <HeroCard title={"Women's Fashion Collection"} img={women} color={"[#FEBD00]"}/>
+        <HeroCard title={"Kid's wonder Fashion Collection"} img={kid} color={"[#EB268F]"}/>
       </div>
     </div>
   );

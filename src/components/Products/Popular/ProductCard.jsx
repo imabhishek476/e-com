@@ -14,7 +14,9 @@ function ProductCard() {
 
   return (
     <div className=" rounded-xl shadow-md border w-[14vw]">
-      <div className="p-4 flex items-center justify-center">
+      <div className="p-4 flex items-center justify-center" 
+      style={{filter:"drop-shadow(0px 12px 8px gray)"}}
+      >
         <img
           className="h-[120px] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
           src={shirtIMage[Math.floor(Math.random() * 3)]}
