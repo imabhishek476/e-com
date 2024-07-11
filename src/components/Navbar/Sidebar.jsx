@@ -8,106 +8,120 @@ import {
   FaCogs,
   FaPhone,
   FaStar,
-  FaFire
+  FaFire,
+  FaHandHoldingHeart
 } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { MdShoppingCart } from "react-icons/md";
+import { IoHomeSharp } from "react-icons/io5";
+import { MdFilterVintage, MdNewReleases, MdShoppingCart } from "react-icons/md";
+import { VscSettings } from "react-icons/vsc";
+import logo from "../../assets/images/signup/logo.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import { TbRectangleVerticalFilled } from "react-icons/tb";
 
 const sideList = [
   {
     id: 1,
     title: "Home",
-    route: "home",
-    icon: <FaHome className="" />
+    route: "/",
+    icon: <IoHomeSharp className="text-[#050a44]" />
   },
   {
     id: 2,
     title: "Shop",
-    route: "shop",
-    icon: <BsShop className="" />,
+    route: "/shop",
+    icon: <BsShop className="text-[#050a44]" />,
     list: [
       {
         id: 21,
-        title: "Cart",
-        route: "cart",
-        icon: <MdShoppingCart className="" />
+        title: "Men's Wear",
+        navigate: "/mens_wear"
+        // icon: <MdShoppingCart className="text-[#050a44]" />
       },
       {
         id: 22,
-        title: "Saved",
-        route: "saved",
-        icon: <FaHeart className="text-red-600" />
+        title: "Women's wear",
+        navigate: "/womens_wear"
+        // icon: <FaHeart className="text-red-600" />
       }
     ]
   },
   {
     id: 6,
     title: "Profile",
-    route: "profile",
-    icon: <FaUser className="" />
+    route: "/profile",
+    icon: <FaUser className="text-[#050a44]" />
   },
   {
     id: 7,
     title: "On Sale",
-    route: "on_sale",
-    icon: <FaTags className="" />
+    route: "/sale",
+    icon: <MdFilterVintage className="text-[#050a44]" />
   },
   {
     id: 8,
     title: "Customize",
-    route: "customize",
-    icon: <FaCogs className="" />
+    route: "/customize",
+    icon: <VscSettings className="text-[#050a44]" />
   },
   {
     id: 9,
     title: "Contact Us",
-    route: "contact",
-    icon: <FaPhone className="" />
+    route: "/contact",
+    icon: <div className="font-bold text-[#050a44]">@</div>
   },
   {
     id: 10,
     title: "New Arrival",
-    route: "new_arrival",
-    icon: <FaStar className="" />
+    route: "/new",
+    icon: <MdNewReleases className="text-[#050a44]" />
   },
   {
     id: 11,
     title: "Most Popular",
-    route: "popular",
-    icon: <FaFire className="" />
+    route: "/popular",
+    icon: <FaHandHoldingHeart className="text-[#050a44]" />
   }
 ];
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const toggleShop = () => setOpen(!open);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const checkCurrentPage = (route) =>{
+    // if(route === '\mens_wear' || route === '\mens_wear'){
+    //   return true;
+    // }
+    return location.pathname === route
+  }
 
   return (
     <div className="">
       <div className="m-4">
-        <img
-          className="w-[10vw]"
-          src="https://pitamber-ecommerce.netlify.app/static/media/logo.57073df31ae12b223c29.png"
-          alt=""
-        />
+        <img className="w-[10vw]" src={logo} alt="Brand" />
       </div>
       <div>
-        <ul className="list-none my-4 ml-2 mr-8 flex flex-col">
+        <ul className="list-none my-4 mr-8 flex flex-col">
           {sideList?.map((item) => (
             <div key={item.id} className="flex flex-col">
               <li
                 onClick={() => {
-                  item.title === "Shop" && toggleShop();
+                  if (item.title !== "Shop") {
+                    navigate(item.route);
+                  } else {
+                    item.title === "Shop" && toggleShop();
+                  }
                 }}
-                style={{
-                  display: `${
-                    item?.title === "Cart" || (item?.title === "Saved" && open)
-                      ? "none"
-                      : ""
-                  }`
-                }}
-                className="text-xs px-8 pl-5 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
+                className="flex items-center gap-2 text-xs hover:bg-gray-300 rounded-lg cursor-pointer"
               >
+                <div
+                  style={{ visibility: checkCurrentPage(item.route) ? "": "hidden" }}
+                  className="text-pink-600"
+                >
+                  <TbRectangleVerticalFilled />
+                </div>
                 <div className="flex items-center m-2 gap-7">
                   <div className="text-[0.8rem]">{item.icon}</div>
                   <span>{item.title}</span>
@@ -116,16 +130,17 @@ const Sidebar = () => {
                   )}
                 </div>
               </li>
-              {item.title === "Shop" && open && (
+              {item?.title === "Shop" && open && (
                 <ul className="list-none my-2 ml-6 flex flex-col">
                   {item.list.map((subItem) => (
                     <li
                       key={subItem.id}
-                      className="text-xs px-8 pl-0 hover:bg-gray-300 rounded-lg hover:text-gray-800 cursor-pointer"
+                      onClick={() => navigate(subItem?.navigate)}
+                      className="text-xs px-8 pl-0 hover:bg-gray-300 rounded-lg cursor-pointer"
                     >
-                      <div className="flex items-center m-2 gap-7 text-black">
-                        <div className="text-[0.8rem]">{subItem.icon}</div>
-                        <span>{subItem.title}</span>
+                      <div className="flex justify-center mx-0 m-2 text-black">
+                        {/* <div className="text-[0.8rem]">{subItem.icon}</div> */}
+                        <div className="">{subItem?.title}</div>
                       </div>
                     </li>
                   ))}

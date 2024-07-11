@@ -69,7 +69,7 @@ function Navbar() {
         </div>
         <div className="flex justify-center items-center">
           <div
-            onClick={() => !isUser && navigate("/customer/login")}
+            onClick={() => isUser? navigate('/cart') : navigate("/customer/login")}
             className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer"
           >
             <MdShoppingCart className="m-2" />
