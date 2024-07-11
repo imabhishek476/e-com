@@ -4,9 +4,10 @@ import Line from "../../assets/images/signup/Line.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { CustomerLogin } from "../../api/login";
+import Cookies from 'js-cookie'
 
 function Index() {
   const [loading, setLoading] = useState(false);
@@ -29,13 +30,20 @@ function Index() {
       console.log(obj);
       const data = await CustomerLogin(obj);
       if (data) {
-        navigate("/");
+        window.location.replace('/')
         setLoading(false);
       }
     } catch (error) {
       alert(error);
     }
   };
+
+  useEffect(()=>{
+    const cookie = Cookies.get('accessToken')
+    if(cookie){
+      navigate('/')
+    }
+  },[])
 
   return (
     <div className="container flex h-screen rounded-lg bg-[#050A44]">

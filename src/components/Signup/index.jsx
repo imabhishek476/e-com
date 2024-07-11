@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/signup/logo.png";
 import customer from "../../assets/images/signup/customer.png";
 import Line from "../../assets/images/signup/Line.png";
@@ -7,6 +7,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import TermsModal from "./Terms&Condition";
 import { useRef } from 'react';
+import Cookies from "js-cookie";
 import EventModal from "./EventModal";
 
 function Index() {
@@ -35,6 +36,13 @@ function Index() {
     setShowModal(true);
     form.current.reset()
   };
+
+  useEffect(()=>{
+    const cookie = Cookies.get('accessToken')
+    if(cookie){
+      window.location.replace('/')
+    }
+  },[])
 
   return (
     <>
