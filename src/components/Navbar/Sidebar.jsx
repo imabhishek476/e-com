@@ -25,13 +25,13 @@ const sideList = [
     id: 1,
     title: "Home",
     route: "/",
-    icon: <IoHomeSharp className="text-[#050a44]" />
+    icon: <IoHomeSharp />
   },
   {
     id: 2,
     title: "Shop",
     route: "/shop",
-    icon: <BsShop className="text-[#050a44]" />,
+    icon: <BsShop />,
     list: [
       {
         id: 21,
@@ -51,37 +51,37 @@ const sideList = [
     id: 6,
     title: "Profile",
     route: "/profile",
-    icon: <FaUser className="text-[#050a44]" />
+    icon: <FaUser />
   },
   {
     id: 7,
     title: "On Sale",
     route: "/sale",
-    icon: <MdFilterVintage className="text-[#050a44]" />
+    icon: <MdFilterVintage />
   },
   {
     id: 8,
     title: "Customize",
     route: "/customize",
-    icon: <VscSettings className="text-[#050a44]" />
+    icon: <VscSettings />
   },
   {
     id: 9,
     title: "Contact Us",
     route: "/contact",
-    icon: <div className="font-bold text-[#050a44]">@</div>
+    icon: <div>@</div>
   },
   {
     id: 10,
     title: "New Arrival",
     route: "/new",
-    icon: <MdNewReleases className="text-[#050a44]" />
+    icon: <MdNewReleases />
   },
   {
     id: 11,
     title: "Most Popular",
     route: "/popular",
-    icon: <FaHandHoldingHeart className="text-[#050a44]" />
+    icon: <FaHandHoldingHeart />
   }
 ];
 
@@ -121,13 +121,18 @@ const Sidebar = () => {
                   style={{
                     visibility: checkCurrentPage(item.route) ? "" : "hidden"
                   }}
-                  className="text-pink-600"
+                  className="text-pink-600 text-xs"
                 >
                   <TbRectangleVerticalFilled />
                 </div>
-                <div className="flex items-center m-2 gap-7">
-                  <div className="text-[0.8rem]">{item.icon}</div>
-                  <span>{item.title}</span>
+                <div className="flex items-center m-2 gap-7 text-[#050a44]">
+                  <div
+                    className="text-[0.8rem] "
+                    style={{ filter: "drop-shadow(0px 3px 1px gray)" }}
+                  >
+                    {item.icon}
+                  </div>
+                  <span className="font-semibold">{item.title}</span>
                   {item.title === "Shop" && (
                     <div> {open ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
                   )}
@@ -141,9 +146,9 @@ const Sidebar = () => {
                       onClick={() => navigate(subItem?.navigate)}
                       className="text-xs px-8 pl-0 hover:bg-gray-300 rounded-lg cursor-pointer"
                     >
-                      <div className="flex justify-center mx-0 m-2 text-black">
+                      <div className="flex justify-center mx-0 m-2 text-black font-bold">
                         {/* <div className="text-[0.8rem]">{subItem.icon}</div> */}
-                        <div className="">{subItem?.title}</div>
+                        <div className="font-semibold">{subItem?.title}</div>
                       </div>
                     </li>
                   ))}
@@ -170,8 +175,15 @@ const Sidebar = () => {
         </div>
         <div className="mx-5">
           <li className="list-none ml-6 flex items-center font-bold text-[#050a44]">
-            <i><HiClipboardDocumentList /></i>
-            <button onClick={()=>navigate('/terms&condition')} className="text-sm">Terms of Use</button>
+            <i>
+              <HiClipboardDocumentList />
+            </i>
+            <button
+              onClick={() => navigate("/terms&condition")}
+              className="text-sm"
+            >
+              Terms of Use
+            </button>
           </li>
         </div>
       </div>

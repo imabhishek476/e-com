@@ -10,7 +10,7 @@ function ProductCard({ img, price, category }) {
     <div className="w-[19vw] bg-white rounded-xl">
       <div className="border rounded-xl shadow-xl p-2 relative transition-transform duration-300 ease-in-out hover:scale-90">
         <img src={img} alt="" />
-        <div className="absolute top-0 right-0 px-4 m-5 py-1 rounded-xl bg-blue-950 dark:text-white">
+        <div className="absolute top-0 right-0 px-4 m-5 py-1 rounded-xl bg-blue-950 text-white">
           New
         </div>
       </div>

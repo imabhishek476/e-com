@@ -23,6 +23,7 @@ import { VscSettings } from "react-icons/vsc";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { fetchUserProfile } from "../../api/login";
+import { GoDotFill } from "react-icons/go";
 
 function Navbar() {
   const [isUser, setIsUser] = useState(false);
@@ -74,9 +75,13 @@ function Navbar() {
           >
             <MdShoppingCart className="m-2" />
           </div>
-          <div className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer">
-            <MdNotificationsActive className="m-2" />
+          <div className="relative flex">
+            <div className="absolute -top-2 right-3"><GoDotFill className="text-[#FF0000] text-lg"/></div>
+            <div className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer">
+              <MdNotificationsActive className="m-2" />
+            </div>
           </div>
+          
           <div className="relative flex mr-5">
             <div
               onClick={() => setIsOpen((prev) => !prev)}

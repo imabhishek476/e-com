@@ -46,7 +46,7 @@ function index() {
       <div className="m-4">
         <span className="text-3xl text-[#050A44] font-semibold">Shop By Categories</span>
         <div className="flex overflow-x-scroll scrollbar-hidden">
-          <div className="flex justify-around flex-nowrap gap-2 my-4">
+          <div className="flex justify-around flex-nowrap gap-2 my-5">
             {
               ProductCategory && ProductCategory?.map((item)=>(
                   <ProductCard key={item.id} img={item.image} item={item.itemTotal} category={item.type}/>
