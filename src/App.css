@@ -12,6 +12,41 @@
   /* background-color: black; */
 }
 
-::-webkit-scrollbar {
-  display: none;
+*::-webkit-scrollbar {
+  width: 3px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+  width: 3px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 14px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+
+/* Firefox */
+
+*::-moz-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+*::-moz-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+  width: 3px;
+}
+
+*::-moz-scrollbar-thumb {
+  background-color: black;
+  border-radius: 14px;
+  border: 1px solid grey;
+  cursor: pointer;
 }
