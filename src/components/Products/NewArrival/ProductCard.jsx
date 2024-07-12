@@ -7,14 +7,14 @@ import BlackCoat from "../../../assets/images/home/black-coat.png"
 
 function ProductCard({ img, price, category }) {
   return (
-    <div className="w-[19vw] bg-white rounded-xl">
+    <div className="w-[19vw] rounded-xl">
       <div className="border rounded-xl shadow-xl p-2 relative transition-transform duration-300 ease-in-out hover:scale-90">
         <img src={img} alt="" />
         <div className="absolute top-0 right-0 px-4 m-5 py-1 rounded-xl bg-blue-950 text-white">
           New
         </div>
       </div>
-      <div>
+      <div className="my-3">
         <span className="mx-3 font-semibold">{category}</span>
         <div className="flex justify-between items-center mx-3">
           <span>{price}</span>{" "}

@@ -12,7 +12,7 @@ function ProductCard() {
   ];
 
   return (
-    <div className=" rounded-xl shadow-md border min-w-[14vw] m-1 ml-0 bg-gray-50">
+    <div className=" rounded-xl shadow-md border min-w-[14vw] m-1 ml-0 bg-white">
       <div
         className="p-4 flex items-center justify-center"
         style={{ filter: "drop-shadow(0px 12px 8px gray)" }}
