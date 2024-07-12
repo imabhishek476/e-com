@@ -24,23 +24,27 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { fetchUserProfile } from "../../api/login";
 import { GoDotFill } from "react-icons/go";
+import { useCookies } from "react-cookie";
 
 function Navbar() {
   const [isUser, setIsUser] = useState(false);
   const [isOpen, setIsOpen] = useState(isUser);
+
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
   const [cookie] = useState(Cookies.get("accessToken"));
   const [userProfile, setUserProfile] = useState(null);
 
   const navigate = useNavigate();
 
   const handleUserExist = () => {
+    console.log(cookies['accessToken'],cookie)
     if (cookie) {
       setIsUser(true);
     }
   };
 
   const fetchUserData = async()=>{
-    const data = await fetchUserProfile()
+    const data = await fetchUserProfile(cookie)
     if(data){
       setUserProfile(data.data)
     }

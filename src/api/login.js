@@ -32,10 +32,14 @@ export const CustomerLogin = async (obj) => {
     }
 };
 
-export const fetchUserProfile = async()=>{
+export const fetchUserProfile = async(cookie)=>{
+  console.log(typeof(access))
   try {
+    if(access){
+      throw new Error({message: "No user Exist"})
+    }
     let headers = new Headers();
-      headers.append('Authorization', 'Bearer ' + access);
+      headers.append('Authorization', 'Bearer ' + cookie);
 
       const response = await fetch(apiUrl + '/auth/fetch', {
         method: 'GET',

@@ -20,7 +20,7 @@ function Index() {
   const navigate = useNavigate();
 
   const handleGoogleLogin = ()=>{
-    window.location.replace('http://localhost:5000/auth/google/callback')
+    window.open('https://vibepulse.onrender.com/auth/google/callback','_self')
   }
 
   const handleLogin = async (event) => {
