@@ -53,7 +53,7 @@ function Navbar() {
   }, [cookie]);
 
   return (
-    <div className="container sticky top-0 bg-white text-black z-10 p-3 pr-0">
+    <div className="container sticky top-0 text-black z-10 p-3 pr-0 bg-gray-50">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <span className="font-semibold text-inherit">Top Fashion Brands</span>
@@ -64,7 +64,7 @@ function Navbar() {
           <input
             type="search"
             placeholder="Search product"
-            className="bg-[#f2f3f5] border-none outline-none px-12 py-2 rounded-xl w-full"
+            className="bg-gray-300 border-none outline-none px-12 py-2 rounded-xl w-full"
           />
           <VscSettings className="absolute top-0 right-0 mt-3 mr-5 text-gray-600" />
         </div>

@@ -19,6 +19,10 @@ function Index() {
   const form = useRef();
   const navigate = useNavigate();
 
+  const handleGoogleLogin = ()=>{
+    window.location.replace('http://localhost:5000/auth/google/callback')
+  }
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -142,7 +146,7 @@ function Index() {
               <FaFacebook className="text-lg" />
               <div>Login with facebook</div>
             </button>
-            <button className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3">
+            <button onClick={handleGoogleLogin} className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3">
               <FcGoogle className="text-lg" />
               <div>Login with google</div>
             </button>

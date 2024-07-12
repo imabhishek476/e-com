@@ -99,9 +99,13 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="">
-      <div className="m-4">
-        <img className="w-[10vw]" src={logo} alt="Brand" />
+    <div className=" bg-white">
+      <div className="m-4 bg-transparent">
+        <img
+          className="w-[10vw] bg-transparent object-cover"
+          src={logo}
+          alt="Brand"
+        />
       </div>
       <div>
         <ul className="list-none my-4 mr-8 flex flex-col">
@@ -173,19 +177,31 @@ const Sidebar = () => {
             </button>
           </div>
         </div>
-        <div className="mx-5">
-          <li className="list-none ml-6 flex items-center font-bold text-[#050a44]">
-            <i>
-              <HiClipboardDocumentList />
-            </i>
-            <button
-              onClick={() => navigate("/terms&condition")}
-              className="text-sm"
+        <li className="list-none rounded-lg cursor-pointer font-semibold">
+          <div className="flex items-center gap-2 text-[#050a44]">
+            <div
+              style={{
+                visibility: checkCurrentPage("/terms&condition") ? "" : "hidden"
+              }}
+              className="text-pink-600 text-xs"
             >
-              Terms of Use
-            </button>
-          </li>
-        </div>
+              <TbRectangleVerticalFilled />
+            </div>
+            <div className="flex items-center m-2 gap-7">
+              <div>
+                <HiClipboardDocumentList
+                  style={{ filter: "drop-shadow(0px 3px 1px gray)" }}
+                />
+              </div>
+              <button
+                onClick={() => navigate("/terms&condition")}
+                className="text-sm"
+              >
+                Terms of Use
+              </button>
+            </div>
+          </div>
+        </li>
       </div>
     </div>
   );
