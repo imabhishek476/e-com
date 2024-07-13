@@ -33,13 +33,9 @@ export const CustomerLogin = async (obj) => {
 };
 
 export const fetchUserProfile = async(cookie)=>{
-  console.log(typeof(access))
   try {
-    if(access){
-      throw new Error({message: "No user Exist"})
-    }
     let headers = new Headers();
-      headers.append('Authorization', 'Bearer ' + cookie);
+      headers.append('Authorization', 'Bearer ' + access);
 
       const response = await fetch(apiUrl + '/auth/fetch', {
         method: 'GET',
@@ -49,8 +45,14 @@ export const fetchUserProfile = async(cookie)=>{
       console.log(data, response.ok)
       if(response.ok){
         return {data}
+      }else{
+        throw new Error(data.message || 'Error fetching user profile');
       }
   } catch (error) {
     console.log(error);
   }
 }
+
+// // Function to check if access token is still valid
+// const cookies = document.cookie.split(';');
+// const accessTokenCookie = cookies.find(cookie => cookie.trim().startsWith('accessToken='));

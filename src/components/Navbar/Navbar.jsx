@@ -1,15 +1,10 @@
-import { Input } from "@nextui-org/input";
 import React, { useEffect, useState } from "react";
-import { CgProfile } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { fetchUserProfile } from "../../api/login";
+import Cookies from "js-cookie";
 import { CiSearch } from "react-icons/ci";
-import {
-  FaSearch,
-  FaCartPlus,
-  FaBell,
-  FaUser,
-  FaFilter,
-  FaQuestionCircle
-} from "react-icons/fa";
+import { FaQuestionCircle } from "react-icons/fa";
 import { FaUserLarge } from "react-icons/fa6";
 import { HiClipboardDocumentList } from "react-icons/hi2";
 import { IoMdLogOut } from "react-icons/io";
@@ -20,41 +15,38 @@ import {
 } from "react-icons/md";
 import { RiTruckFill } from "react-icons/ri";
 import { VscSettings } from "react-icons/vsc";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
-import { fetchUserProfile } from "../../api/login";
 import { GoDotFill } from "react-icons/go";
-import { useCookies } from "react-cookie";
 
 function Navbar() {
   const [isUser, setIsUser] = useState(false);
   const [isOpen, setIsOpen] = useState(isUser);
-
-  const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
-  const [cookie] = useState(Cookies.get("accessToken"));
   const [userProfile, setUserProfile] = useState(null);
-
+  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
   const navigate = useNavigate();
 
-  const handleUserExist = () => {
-    console.log(cookies['accessToken'],cookie)
-    if (cookie) {
+  const checkUserExistence = () => {
+    if (cookies["accessToken"]) {
       setIsUser(true);
     }
   };
 
-  const fetchUserData = async()=>{
-    const data = await fetchUserProfile(cookie)
-    if(data){
-      setUserProfile(data.data)
+  const fetchUserData = async () => {
+    try {
+      const data = await fetchUserProfile();
+      if (data) {
+        setUserProfile(data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
     }
-  }
-
+  };
 
   useEffect(() => {
-    handleUserExist();
-    fetchUserData()
-  }, [cookie]);
+    checkUserExistence();
+    if (isUser) {
+      fetchUserData();
+    }
+  }, [isUser, cookies]);
 
   return (
     <div className="container sticky top-0 text-black z-10 p-3 pr-0 bg-gray-50">
@@ -74,18 +66,22 @@ function Navbar() {
         </div>
         <div className="flex justify-center items-center">
           <div
-            onClick={() => isUser? navigate('/cart') : navigate("/customer/login")}
+            onClick={() =>
+              isUser ? navigate("/cart") : navigate("/customer/login")
+            }
             className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer"
           >
             <MdShoppingCart className="m-2" />
           </div>
           <div className="relative flex">
-            <div className="absolute -top-2 right-3"><GoDotFill className="text-[#FF0000] text-lg"/></div>
+            <div className="absolute -top-2 right-3">
+              <GoDotFill className="text-[#FF0000] text-lg" />
+            </div>
             <div className=" bg-gray-400 rounded-md text-2xl h-[40px] mr-5 cursor-pointer">
               <MdNotificationsActive className="m-2" />
             </div>
           </div>
-          
+
           <div className="relative flex mr-5">
             <div
               onClick={() => setIsOpen((prev) => !prev)}
@@ -130,11 +126,11 @@ function Navbar() {
                 <div className="text-xs px-6 pb-2 cursor-pointer">
                   <button
                     onClick={() => {
-                      if(isUser){
-                        Cookies.remove('accessToken')
+                      if (isUser) {
+                        Cookies.remove("accessToken");
                         window.location.reload();
                         // navigate("/customer/login");
-                      }else{
+                      } else {
                         navigate("/customer/login");
                       }
                     }}
