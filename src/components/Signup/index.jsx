@@ -9,8 +9,12 @@ import TermsModal from "./Terms&Condition";
 import { useRef } from 'react';
 import Cookies from "js-cookie";
 import EventModal from "./EventModal";
+import Loading from '../Loading/index'
+import { useGoogleLogin } from "@react-oauth/google";
+import { googleAuth } from "../../api/googleAuth";
 
 function Index() {
+  const [loadingModal, setLoadingModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showEventModal, setShowEventModal] = useState(false);
@@ -37,6 +41,26 @@ function Index() {
     form.current.reset()
   };
 
+  const signup = useGoogleLogin({
+    onSuccess: async (Response) => {
+      try {
+        setLoadingModal(true)
+        const data = await googleAuth(Response);
+        console.log(data);
+        setLoadingModal(false)
+        window.location.replace("/");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    onError: (error) => {
+      setLoadingModal(false)
+      console.log(error);
+    }
+
+  });
+
+
   useEffect(()=>{
     const cookie = Cookies.get('accessToken')
     if(cookie){
@@ -46,6 +70,7 @@ function Index() {
 
   return (
     <>
+      <Loading showModal={loadingModal}/>
       <EventModal showEventModal={showEventModal} setShowEventModal={setShowEventModal}/>
       <TermsModal showModal={showModal} setShowModal={setShowModal} UserData={SignupData} setChecked={setChecked} setShowEventModal={setShowEventModal}/>
       <div className="container flex h-screen rounded-lg bg-[#050A44]">
@@ -153,7 +178,7 @@ function Index() {
                 <FaFacebook className="text-lg" />
                 <div>Sigup with facebook</div>
               </button>
-              <button className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3">
+              <button onClick={() => signup()} className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3">
                 <FcGoogle className="text-lg" />
                 <div>Sigup with google</div>
               </button>

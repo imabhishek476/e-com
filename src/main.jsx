@@ -10,6 +10,7 @@ import {
 import './index.css'
 import { NextUIProvider } from '@nextui-org/react'
 import Sidebar from './components/Navbar/Sidebar.jsx'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const router = createBrowserRouter([
   {
@@ -67,7 +68,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <GoogleOAuthProvider clientId='205282664949-3q28rh05dda3f2jkpqa6b137mpls7d0m.apps.googleusercontent.com'>
   <NextUIProvider>
     <RouterProvider router={router} />
   </NextUIProvider>
+  </GoogleOAuthProvider>
 )
