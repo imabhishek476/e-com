@@ -29,7 +29,7 @@ function Index() {
   };
 
   const handleFacebookLogin = () => {
-    window.open("http://localhost:5000/auth/facebook/callback", "_self");
+    window.open("https://vibepulse.onrender.com/auth/facebook", "_self");
   };
 
   const handleLogin = async (event) => {

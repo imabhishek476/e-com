@@ -21,6 +21,7 @@ function Navbar() {
   const [isUser, setIsUser] = useState(false);
   const [isOpen, setIsOpen] = useState(isUser);
   const [userProfile, setUserProfile] = useState(null);
+  const cookie = Cookies.get('accessToken')
   const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ function Navbar() {
   };
 
   useEffect(() => {
+    console.log(cookie)
     checkUserExistence();
     if (isUser) {
       fetchUserData();

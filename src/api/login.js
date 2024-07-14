@@ -34,6 +34,7 @@ export const CustomerLogin = async (obj) => {
 
 export const fetchUserProfile = async(cookie)=>{
   try {
+    console.log(access)
     let headers = new Headers();
       headers.append('Authorization', 'Bearer ' + access);
 
