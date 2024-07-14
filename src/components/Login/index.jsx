@@ -10,13 +10,14 @@ import { ImSpinner2 } from "react-icons/im";
 import { CustomerLogin } from "../../api/login";
 import Cookies from "js-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
-import { googleAuth } from "../../api/googleAuth";
+import { facebookAuth, googleAuth } from "../../api/socialAuth";
+import FacebookLogin from "@greatsumini/react-facebook-login";
 
 function Index() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loadingModal, setLoadingModal] = useState(false);
+  const cookie = Cookies.get("accessToken");
   // const [LoginData, setLoginData] = useState({
   //   email: null,
   //   password: null
@@ -24,13 +25,13 @@ function Index() {
   const form = useRef();
   const navigate = useNavigate();
 
-  const handleGoogleLogin = () => {
-    window.open("http://localhost:5000/auth/google/callback", "_self");
-  };
+  // const handleGoogleLogin = () => {
+  //   window.open("http://localhost:5000/auth/google/callback", "_self");
+  // };
 
-  const handleFacebookLogin = () => {
-    window.open("https://vibepulse.onrender.com/auth/facebook", "_self");
-  };
+  // const handleFacebookLogin = () => {
+  //   window.open("https://vibepulse.onrender.com/auth/facebook", "_self");
+  // };
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -67,13 +68,25 @@ function Index() {
       setLoadingModal(false)
       console.log(error);
     }
-
-    // onSuccess: codeResponse => console.log(codeResponse),
-    // flow: 'auth-code',
   });
 
+  const facebookLogin = async(response) =>{
+    try {
+      setLoadingModal(true)
+      if(response?.email){
+        const data = await facebookAuth(response)
+        console.log(data);
+        setLoadingModal(false)
+        data?.data?.email && window.location.replace('/')
+      }
+      setLoadingModal(false)
+    } catch (error) {
+      setLoadingModal(false)
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    const cookie = Cookies.get("accessToken");
     if (cookie) {
       navigate("/");
     }
@@ -81,7 +94,7 @@ function Index() {
 
   return (
     <>
-      <Loading showModal={loadingModal}/>
+      <Loading showModal={loadingModal} />
       <div className="container flex h-screen rounded-lg bg-[#050A44]">
         {/* Left Section */}
         <div className="bg-[#050A44] w-2/5 flex flex-col text-white relative p-5">
@@ -114,7 +127,7 @@ function Index() {
         {/* Right Section (Signup Form) */}
         <div className="bg-white w-3/5 flex flex-col rounded-lg justify-center items-center">
           <div className="container w-4/5 px-10 flex flex-col">
-            <h1 className="text-4xl font-bold drop-shadow-2xl text-[#EB268F] mb-4">
+            <h1 className="text-4xl font-bold drop-shadow-2xl text-[#EB268F] mb-2">
               Login
             </h1>
             <form
@@ -123,7 +136,7 @@ function Index() {
               ref={form}
             >
               <div className="flex justify-between"></div>
-              <div className="container flex flex-col mt-2">
+              <div className="container flex flex-col">
                 <input
                   className="border py-3 px-2 my-3  border-black rounded-md"
                   type="email"
@@ -177,13 +190,28 @@ function Index() {
               <img className="w-[16em] h-[2px]" src={Line} alt="" />
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={handleFacebookLogin}
-                className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3"
-              >
-                <FaFacebook className="text-lg" />
-                <div>Login with facebook</div>
-              </button>
+              <FacebookLogin
+                appId="1525038411722831"
+                onSuccess={(response) => {
+                  console.log("Login Success!", response);
+                }}
+                onFail={(error) => {
+                  console.log("Login Failed!", error);
+                }}
+                onProfileSuccess={(response) => {
+                  console.log("Get Profile Success!", response);
+                  facebookLogin(response);
+                }}
+                render={({ onClick, logout }) => (
+                  <button
+                    onClick={onClick}
+                    className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3"
+                  >
+                    <FaFacebook className="text-lg" />
+                    <div>Login with facebook</div>
+                  </button>
+                )}
+              />
               <button
                 onClick={() => login()}
                 className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3"

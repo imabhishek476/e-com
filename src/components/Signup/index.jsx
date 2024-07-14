@@ -11,14 +11,13 @@ import Cookies from "js-cookie";
 import EventModal from "./EventModal";
 import Loading from '../Loading/index'
 import { useGoogleLogin } from "@react-oauth/google";
-import { googleAuth } from "../../api/googleAuth";
+import { googleAuth } from "../../api/socialAuth";
 
 function Index() {
   const [loadingModal, setLoadingModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showEventModal, setShowEventModal] = useState(false);
-  const [checked, setChecked] = useState(false)
   const [SignupData, setSignupData] = useState({
     firstname: null,
     lastname: null,
@@ -72,7 +71,7 @@ function Index() {
     <>
       <Loading showModal={loadingModal}/>
       <EventModal showEventModal={showEventModal} setShowEventModal={setShowEventModal}/>
-      <TermsModal showModal={showModal} setShowModal={setShowModal} UserData={SignupData} setChecked={setChecked} setShowEventModal={setShowEventModal}/>
+      <TermsModal showModal={showModal} setShowModal={setShowModal} UserData={SignupData} setShowEventModal={setShowEventModal}/>
       <div className="container flex h-screen rounded-lg bg-[#050A44]">
         {/* Left Section */}
         <div className="bg-[#050A44] w-2/5 flex flex-col text-white relative p-5 ">
@@ -174,7 +173,7 @@ function Index() {
               <img className="w-[16em] h-[2px]" src={Line} alt="" />
             </div>
             <div className="flex gap-2">
-              <button className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3">
+              <button disabled className="border rounded-lg border-black w-full p-2 text-xs flex justify-center items-center gap-3">
                 <FaFacebook className="text-lg" />
                 <div>Sigup with facebook</div>
               </button>
