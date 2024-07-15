@@ -170,8 +170,8 @@ const Sidebar = () => {
             src={vector2}
             alt="vector"
           />
-          <div>
-            <HiMiniPlusCircle style={{WebkitTextStroke:"2px #fff"}} className="text-[#050A44] text-3xl" />
+          <div className="">
+            <HiMiniPlusCircle style={{ filter: "drop-shadow(0px 0px 9px white)" }} className="text-[#050A44] text-5xl border-8 border-white rounded-full" />
           </div>
           <div className="font-bold text-lg">
             <h1 style={{ filter: "drop-shadow(1px 4px 6px black)" }}>Need help!</h1>
