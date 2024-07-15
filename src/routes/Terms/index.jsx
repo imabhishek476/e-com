@@ -1,4 +1,3 @@
-import React from "react";
 import Sidebar from "../../components/Navbar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Terms from "../../components/TermsPrivacy";

@@ -1,7 +1,8 @@
+import Contact from "../../components/Contact";
 import Sidebar from "../../components/Navbar/Sidebar";
-import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer";
-import Cart from "../../components/Cart";
+import Navbar from "../../components/Navbar/Navbar";
+
 
 function index() {
   return (
@@ -12,7 +13,7 @@ function index() {
         </div>
         <div className="flex flex-col bg-gray-50 col-start-1 md:col-start-1 lg:col-start-3 col-end-13 md:col-end-13 lg:col-end-13 sticky">
           <Navbar />
-          <Cart />
+          <Contact />
           <Footer />
         </div>
       </div>

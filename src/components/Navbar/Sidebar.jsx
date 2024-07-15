@@ -171,14 +171,14 @@ const Sidebar = () => {
             alt="vector"
           />
           <div>
-            <HiMiniPlusCircle style={{ filter: "drop-shadow(1px 1px 5px white)" }} className="text-[#050A44] text-3xl" />
+            <HiMiniPlusCircle style={{WebkitTextStroke:"2px #fff"}} className="text-[#050A44] text-3xl" />
           </div>
           <div className="font-bold text-lg">
             <h1 style={{ filter: "drop-shadow(1px 4px 6px black)" }}>Need help!</h1>
           </div>
           <div>
-            <p className="text-xs font-semibold">
-              About Account management <br />ordering, payment & refund
+            <p className="text-[0.65rem] font-semibold" >
+              About Account management ordering, payment & refund
             </p>
           </div>
           <div className="mx-4">

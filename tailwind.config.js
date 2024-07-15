@@ -11,7 +11,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '0.8rem',
       screens: {
         xl: '1400px',
         '2xl': '1530px',
@@ -19,7 +19,8 @@ export default {
     },
     extend: {
       colors: {
-        primary: {"50":"#fdf2f8","100":"#fce7f3","200":"#fbcfe8","300":"#f9a8d4","400":"#f472b6","500":"#ec4899","600":"#db2777","700":"#EB268F","800":"#9d174d","900":"#831843","950":"#500724"}
+        primary: {"50":"#fdf2f8","100":"#fce7f3","200":"#fbcfe8","300":"#f9a8d4","400":"#f472b6","500":"#ec4899","600":"#db2777","700":"#EB268F","800":"#9d174d","900":"#831843","950":"#500724"},
+        secondary: "#050A44"
       }
     },
     fontFamily: {

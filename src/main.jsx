@@ -4,6 +4,7 @@ import Terms from './routes/Terms'
 import Login from './routes/Login'
 import Signup from './routes/Signup'
 import Cart from './routes/Cart'
+import Contact from './routes/Contact'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/contact",
-    element: <div className='flex'><Sidebar/><div>Contact</div></div>,
+    element: <Contact/>,
   },
   {
     path: "/new",
