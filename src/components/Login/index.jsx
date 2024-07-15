@@ -95,7 +95,7 @@ function Index() {
   return (
     <>
       <Loading showModal={loadingModal} />
-      <div className="container flex h-screen rounded-lg bg-[#050A44]">
+      <div className="flex h-screen rounded-lg bg-[#050A44]">
         {/* Left Section */}
         <div className="bg-[#050A44] w-2/5 flex flex-col text-white relative p-5">
           {/* Logo */}
@@ -126,17 +126,17 @@ function Index() {
 
         {/* Right Section (Signup Form) */}
         <div className="bg-white w-3/5 flex flex-col rounded-lg justify-center items-center">
-          <div className="container w-4/5 px-10 flex flex-col">
+          <div className=" w-4/5 px-10 flex flex-col">
             <h1 className="text-4xl font-bold drop-shadow-2xl text-[#EB268F] mb-2">
               Login
             </h1>
             <form
-              className="container  placeholder:text-sm"
+              className="  placeholder:text-sm"
               onSubmit={handleLogin}
               ref={form}
             >
               <div className="flex justify-between"></div>
-              <div className="container flex flex-col">
+              <div className="flex flex-col">
                 <input
                   className="border py-3 px-2 my-3  border-black rounded-md"
                   type="email"
@@ -165,7 +165,7 @@ function Index() {
                 <div>
                   <button
                     disabled={loading}
-                    className="container flex gap-2 justify-center items-center p-1 py-2 my-3 w-full border rounded-lg bg-[#EB268F] text-white font-semibold"
+                    className="flex gap-2 justify-center items-center p-1 py-2 my-3 w-full border rounded-lg bg-[#EB268F] text-white font-semibold"
                   >
                     <div>Login</div>
                     {loading && (

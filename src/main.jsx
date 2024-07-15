@@ -1,7 +1,9 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import Terms from './routes/Terms'
 import Login from './routes/Login'
 import Signup from './routes/Signup'
+import Cart from './routes/Cart'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -58,11 +60,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <div className='flex'><Sidebar/><div>Your Cart</div></div>,
+    element: <Cart/>,
   },
   {
     path: "/terms&condition",
-    element: <div className='flex'><Sidebar/><div>Terms and Condition</div></div>,
+    element: <Terms/>,
   },
 ]);
 

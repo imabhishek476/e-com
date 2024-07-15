@@ -13,7 +13,7 @@ const paymentImg =[
 function index() {
   return (
     <div className=" text-gray-400 bg-slate-800 z-10 p-14 pt-5">
-      <div className="flex gap-4 justify-between mx-4 container p-8">
+      <div className="flex gap-4 justify-between mx-4 p-8">
         <div className="flex flex-col gap-2">
           <span className="text-lg text-pink-600 font-semibold">
             CUSTOMER SERVICES
@@ -42,7 +42,7 @@ function index() {
           <span className="text-lg text-pink-600 font-semibold">
             CONNECT WITH US
           </span>
-          <ul className="flex gap-4 text-lg">
+          <ul className="flex gap-4 text-xl">
             <li>
               <AiFillTwitterCircle />
             </li>
@@ -66,7 +66,7 @@ function index() {
           <div className="flex">
             {
               paymentImg?.map((item)=>(
-                <img key={item} src={item} className="w-[7vh]" alt="" />
+                <img key={item} src={item} className="w-[4vh] object-cover" alt="" />
               ))
             }
           </div>

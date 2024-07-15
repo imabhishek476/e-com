@@ -8,7 +8,7 @@ import CameraCard from "../Products/Camers.jsx/CameraCard";
 
 function index() {
   return (
-    <div className="container text-white">
+    <div className="text-white">
       <div className="flex mx-4 gap-5">
         <Shoes />
         <div className="flex flex-col justify-between w-[29vw]">
@@ -19,7 +19,7 @@ function index() {
       <div className="m-4">
         <Sale/>
       </div>
-      <div className="container w-[96%] flex justify-around gap-1 ml-5">
+      <div className="w-[96%] flex justify-around gap-1 ml-5">
         <Mobile/>
         <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-6 gap-3 place-items-center">
         <CameraCard/>

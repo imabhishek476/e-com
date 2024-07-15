@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsShop } from "react-icons/bs";
+import { BsPlusCircleFill, BsShop } from "react-icons/bs";
 import {
   FaHome,
   FaHeart,
@@ -18,7 +18,9 @@ import { VscSettings } from "react-icons/vsc";
 import logo from "../../assets/images/signup/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TbRectangleVerticalFilled } from "react-icons/tb";
-import { HiClipboardDocumentList } from "react-icons/hi2";
+import { HiClipboardDocumentList, HiMiniPlusCircle } from "react-icons/hi2";
+import vector1 from "../../assets/images/login/Vector_1.png";
+import vector2 from "../../assets/images/login/Vector_2.png";
 
 const sideList = [
   {
@@ -107,7 +109,7 @@ const Sidebar = () => {
           alt="Brand"
         />
       </div>
-      <div>
+      <div className="">
         <ul className="list-none my-4 mr-8 flex flex-col">
           {sideList?.map((item) => (
             <div key={item.id} className="flex flex-col">
@@ -161,19 +163,32 @@ const Sidebar = () => {
             </div>
           ))}
         </ul>
-        <div className="my-4 ml-2 mr-8 relative">
+        <div className="my-4 mx-5 w-fit p-8 pt-3 px-2 relative text-sm bg-[#808aff] text-center flex flex-col items-center space-y-3 rounded-xl overflow-hidden text-[#050A44]">
+          <img className="absolute top-0 left-0" src={vector1} alt="vector" />
           <img
-            src="https://pitamber-ecommerce.netlify.app/static/media/Dash-Need.f43b91919e370cb7b12c.png"
-            alt="Additional Info"
-            className=""
+            className="absolute bottom-0 -right-1"
+            src={vector2}
+            alt="vector"
           />
-          <div className="absolute flex flex-col justify-between mr-3 items-center text-center max-w-[220px] top-[50%] left-[9%] -translate-y-[40%] space-y-3">
-            <h3 className="text-sm font-bold">Need Help!</h3>
-            <p className="px-4 text-[10px]  my-2">
-              About account management, ordering, payment & refund
+          <div>
+            <HiMiniPlusCircle style={{ filter: "drop-shadow(1px 1px 5px white)" }} className="text-[#050A44] text-3xl" />
+          </div>
+          <div className="font-bold text-lg">
+            <h1 style={{ filter: "drop-shadow(1px 4px 6px black)" }}>Need help!</h1>
+          </div>
+          <div>
+            <p className="text-xs font-semibold">
+              About Account management <br />ordering, payment & refund
             </p>
-            <button className="bg-blue-700 text-xs text-white rounded-md px-2 py-1 my-3 mt-8">
-              Customer Service
+          </div>
+          <div className="mx-4">
+            <button
+              style={{ filter: "drop-shadow(1px 3px 4px black)" }}
+              className="px-5 py-2 font-semibold rounded-lg bg-blue-700 text-white text-xs"
+            >
+              <p style={{ filter: "drop-shadow(1px 3px 1px black)" }}>
+                Customer service
+              </p>
             </button>
           </div>
         </div>

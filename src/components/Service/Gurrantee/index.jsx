@@ -6,7 +6,7 @@ import offers from '../../../assets/images/home/offers.png'
 
 function index() {
   return (
-    <div className='container py-4  mr-4 flex justify-around'>
+    <div className=' py-4  mr-4 flex justify-around'>
         <div className='flex items-center'>
             <div className='w-[6vw]'>
                 <img className='object-cover' src={truck} alt="shipping" />

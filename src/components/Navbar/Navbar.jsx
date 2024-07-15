@@ -51,7 +51,7 @@ function Navbar() {
   }, [isUser, cookies]);
 
   return (
-    <div className="container sticky top-0 text-black z-10 p-3 pr-0 bg-gray-50">
+    <div className=" sticky top-0 text-black z-10 p-3 pr-0 bg-gray-50">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <span className="font-semibold text-inherit">Top Fashion Brands</span>

@@ -7,9 +7,9 @@ function index() {
   return (
     <div className=" text-black">
       <div className="flex flex-wrap lg:flex-nowrap mx-1">
-        <HeroCard  title={"Men's Fashion Collection"} img={men} color={"[#8DB8CB]"}/>
-        <HeroCard title={"Women's Fashion Collection"} img={women} color={"[#FEBD00]"}/>
-        <HeroCard title={"Kid's wonder Fashion Collection"} img={kid} color={"[#EB268F]"}/>
+        <HeroCard  title={"Men's Fashion Collection"} img={men} color={"bg-[#8DB8CB]"}/>
+        <HeroCard title={"Women's Fashion Collection"} img={women} color={"bg-[#FEBD00]"}/>
+        <HeroCard title={"Kid's wonder Fashion Collection"} img={kid} color={"bg-[#EB268F]"}/>
       </div>
     </div>
   );
