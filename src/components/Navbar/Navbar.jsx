@@ -130,6 +130,7 @@ function Navbar() {
                     onClick={() => {
                       if (isUser) {
                         Cookies.remove("accessToken");
+                        localStorage.clear();
                         window.location.reload();
                         // navigate("/customer/login");
                       } else {
