@@ -27,7 +27,7 @@ function App() {
           <TopSale />
           <ProductCategory/>
           <Banner />
-          <NewArrival/>
+          <NewArrival message={"Our New Products"}/>
           <Footer />
         </div>
       </div>

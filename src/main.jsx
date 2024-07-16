@@ -5,6 +5,7 @@ import Login from './routes/Login'
 import Signup from './routes/Signup'
 import Cart from './routes/Cart'
 import Contact from './routes/Contact'
+import MensWear from './routes/MensWear'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/mens_wear",
-    element: <div className='flex'><Sidebar/><div>Men's Wear</div></div>,
+    element: <MensWear/>,
   },
   {
     path: "/womens_wear",

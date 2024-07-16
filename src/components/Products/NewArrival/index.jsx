@@ -40,11 +40,11 @@ const ProductCategory =[
   // },
 ]
 
-function index() {
+function index({message}) {
   return (
     <div className=" text-black">
       <div className="m-4">
-        <span className="text-3xl text-[#050A44] font-semibold">Our New Product</span>
+        <span className="text-3xl text-[#050A44] font-semibold">{message}</span>
           <div className="flex justify-around flex-nowrap gap-2 my-4">
             {
               ProductCategory && ProductCategory?.map((item)=>(
