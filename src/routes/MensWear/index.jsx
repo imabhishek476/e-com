@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Navbar/Sidebar";
 import Footer from "../../components/Footer";
-import Carousel from "../../components/MensWear/Carousel";
+import Carousel from "../../components/Everyone/Carousel";
 import Category from "../../components/Products/Category";
 import NewArrival from "../../components/Products/NewArrival";
 import b1 from "../../assets/b1.png";
@@ -21,7 +21,7 @@ function index() {
         <div className="flex flex-col bg-gray-50 col-start-1 md:col-start-1 lg:col-start-3 col-end-13 md:col-end-13 lg:col-end-13 sticky">
           <Navbar />
           <div className="container m-4 ml-0">
-            <Carousel autoSlide={true}>{[...slides.map((item) => <img className="cursor-pointer px-1" key={item} src={item}/>)]}</Carousel>
+            <Carousel autoSlide={true}>{[...slides.map((item) => <img className="cursor-pointer px-1 rounded-lg" key={item} src={item}/>)]}</Carousel>
           </div>
           <Category />
           {/* {"Popular Collections"} */}

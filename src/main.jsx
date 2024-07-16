@@ -6,6 +6,7 @@ import Signup from './routes/Signup'
 import Cart from './routes/Cart'
 import Contact from './routes/Contact'
 import MensWear from './routes/MensWear'
+import WomensWear from './routes/WomensWear'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/womens_wear",
-    element: <div className='flex'><Sidebar/><div>Women's Wear</div></div>,
+    element: <WomensWear/>,
   },
   {
     path: "/cart",

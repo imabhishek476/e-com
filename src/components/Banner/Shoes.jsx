@@ -3,7 +3,7 @@ import Shoe from "../../assets/images/home/bannerShoes.png";
 
 function Shoes() {
   return (
-    <div className="w-[50vw] h-[97vh] bg-[#EAEAEA] rounded-lg bg-cover relative flex flex-row-reverse">
+    <div className="w-[50vw] h-[97vh] bg-[#EAEAEA] rounded-lg bg-cover relative flex flex-row-reverse shadow-xl">
       <div className="px-6 py-1 bg-pink-600 absolute top-4 right-4 rounded-xl">
         New
       </div>

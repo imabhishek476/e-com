@@ -3,7 +3,7 @@ import glass from "../../assets/images/home/bannerBag.png";
 
 function Bags() {
   return (
-    <div className="h-[47vh] bg-[#D5D5D5] rounded-lg bg-cover relative">
+    <div className="h-[47vh] bg-[#D5D5D5] rounded-lg bg-cover relative shadow-xl">
       <div className="absolute bottom-0 left-0">
         <img className="w-[18vw]" src={glass} alt="" />
       </div>
