@@ -60,3 +60,17 @@ input:disabled{
   border: 1px solid grey;
   cursor: pointer;
 }
+
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.5s ease-out;
+}
