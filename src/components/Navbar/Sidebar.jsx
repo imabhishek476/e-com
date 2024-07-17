@@ -88,13 +88,13 @@ const sideList = [
 ];
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const toggleShop = () => setOpen(!open);
   const navigate = useNavigate();
   const location = useLocation();
 
   const checkCurrentPage = (route) => {
-    // if(route === '\mens_wear' || route === '\mens_wear'){
+    // if(route==="/shop" && route === '\\mens_wear' || route === '\\womens_wear'){
     //   return true;
     // }
     return location.pathname === route;
@@ -125,7 +125,7 @@ const Sidebar = () => {
               >
                 <div
                   style={{
-                    visibility: checkCurrentPage(item.route) ? "" : "hidden"
+                    visibility: checkCurrentPage(item.route) || item.route==="/shop" && (location.pathname==='\\mens_wear' ||  location.pathname==='\\womens_wear')? "" : "hidden"
                   }}
                   className="text-pink-600 text-xs"
                 >
