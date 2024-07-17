@@ -15,12 +15,12 @@ function index({ page }) {
           <Bags />
         </div>
       </div>
-      {page !== "Women" && (
+      {!page && (
         <div className="m-4">
           <Sale />
         </div>
       )}
-      {page !== "Women" && (
+      {false && page !== "Women" && (
         <div className="w-[96%] flex justify-around gap-1 ml-5">
           <Mobile />
           <div className="grid sm:grid-cols-3 grid-cols-2 sm:gap-6 gap-3 place-items-center">

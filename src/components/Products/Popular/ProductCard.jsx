@@ -53,13 +53,13 @@ function ProductCard({ id, title, description, img, price }) {
   return (
     <>
       {showSnackBar.show && <Snack duration={3000} message={showSnackBar.message} type={showSnackBar.type} onClose={handleCloseSnackbar} />}
-      <div className="bg-white rounded-xl shadow-md border w-[14vw]">
+      <div className="bg-white rounded-xl shadow-md border w-[200px]">
         <div
           className="p-4 flex items-center justify-center"
           style={{ filter: "drop-shadow(0px 12px 8px gray)" }}
         >
           <img
-            className="h-[120px] bg-transparent mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
+            className="h-[120px] mix-blend-multiply transition-transform duration-300 ease-in-out hover:scale-125"
             src={img}
             alt=""
           />

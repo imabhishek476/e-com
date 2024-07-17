@@ -58,17 +58,19 @@ export default index;
 
 function WomenWithShopingBags() {
   return (
-    <div className="flex container my-5">
-      <img className="w-3/6" src={Women} alt="" />
+    <div className="flex justify-between my-4 gap-4 container">
+      <div className="">
+        <img className="object-cover" src={Women} alt="" />
+      </div>
       <div className="flex flex-col gap-10 justify-around">
-        <div className="flex flex-col gap-3 items-center m-4 container">
+        <div className="flex flex-col gap-3 items-center">
           <span className="text-4xl  text-gray-500 text-center">UP TO 50% OFF</span>
           <span className="text-3xl text-center text-secondary font-semibold">
-            Unleash Your Style Potential with Our Spectacular Clothing Sale
+            Unleash Your Style Potential<br />with Our Spectacular Clothing<br />Sale
           </span>
           <span className="text-lg text-center text-gray-500 font-semibold">
-            Feel free to customize these titles to fit the tone and theme of
-            your clothing sale and to convey the excitement of the discounts
+            Feel free to customize these titles to fit the<br />tone and theme of
+            your clothing sale and to convey<br />the excitement of the discounts
             being offered.
           </span>
         </div>

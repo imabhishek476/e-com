@@ -131,16 +131,16 @@ const Sidebar = () => {
                 >
                   <TbRectangleVerticalFilled />
                 </div>
-                <div className="flex items-center m-2 gap-7 text-[#050a44]">
+                <div className="flex items-center justify-center m-2 gap-6 text-[#050a44]">
                   <div
                     className="text-[0.8rem] "
-                    style={{ filter: "drop-shadow(0px 3px 1px gray)" }}
+                    style={{ filter: "drop-shadow(0px 2px 1px gray)" }}
                   >
                     {item.icon}
                   </div>
-                  <span className="font-semibold">{item.title}</span>
+                  <div className="font-semibold text-black">{item.title}</div>
                   {item.title === "Shop" && (
-                    <div> {open ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
+                    <div className="mt-1"> {open ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
                   )}
                 </div>
               </li>

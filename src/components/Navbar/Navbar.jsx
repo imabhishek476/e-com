@@ -95,7 +95,7 @@ function Navbar() {
             {isOpen && (
               <div className="absolute top-10 -left-32 bg-gray-100 space-y-3 border rounded-md px-2">
                 <div className="pt-4 text-sm text-center">
-                  Welcome, {userProfile?.firstname || "Customer"}
+                  {userProfile?.firstname ? `Welcome, ${userProfile?.firstname}` : "Welcome to Vibepulse"}
                 </div>
                 <hr className="" />
                 <ul className="px-6 space-y-2 text-xs text-center">
@@ -138,7 +138,7 @@ function Navbar() {
                       }
                     }}
                   >
-                    <i className="inline-flex pt-1 text-blue-800">
+                    <i className="inline-flex justify-center items-center pt-1 text-blue-800">
                       <IoMdLogOut />
                     </i>
                     {isUser ? (

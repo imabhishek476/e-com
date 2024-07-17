@@ -7,6 +7,9 @@ import Cart from './routes/Cart'
 import Contact from './routes/Contact'
 import MensWear from './routes/MensWear'
 import WomensWear from './routes/WomensWear'
+import OnSale from './routes/OnSale'
+import NewArrival from './routes/NewArrival'
+import MostPopular from './routes/MostPopular'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -35,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/sale",
-    element: <div className='flex'><Sidebar/><div>On Sale</div></div>,
+    element: <OnSale/>,
   },
   {
     path: "/customize",
@@ -47,11 +50,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/new",
-    element: <div className='flex'><Sidebar/><div>New Arrival</div></div>,
+    element: <NewArrival/>,
   },
   {
     path: "/popular",
-    element: <div className='flex'><Sidebar/><div>Popular</div></div>,
+    element: <MostPopular/>,
   },
   {
     path: "/mens_wear",
