@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CustomerSignup } from "../../api/signup";
 
-const TermsModal = ({ showModal, setShowModal , UserData, setShowEventModal}) => {
+const TermsModal = ({ showModal, setShowModal , UserData, setShowEventModal, setLoading}) => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [isChecked3, setIsChecked3] = useState(false);
@@ -11,9 +11,11 @@ const TermsModal = ({ showModal, setShowModal , UserData, setShowEventModal}) =>
       try {
         setShowModal(false);
         // Proceed to signup
+        setLoading(true)
         console.log(UserData)
         const data = await CustomerSignup(UserData)
         console.log(data)
+        setLoading(false)
         setIsChecked1(false)
         setIsChecked2(false)
         setIsChecked3(false)
@@ -41,7 +43,7 @@ const TermsModal = ({ showModal, setShowModal , UserData, setShowEventModal}) =>
             <label className="inline-flex items-center">
               <input
                 type="checkbox"
-                className="form-checkbox"
+                className="form-checkbox w-4 h-4 border-2 border-[#EB268F] rounded-sm"
                 checked={isChecked1}
                 required
                 onChange={(e) => setIsChecked1(e.target.checked)}
@@ -55,7 +57,7 @@ const TermsModal = ({ showModal, setShowModal , UserData, setShowEventModal}) =>
             <label className="inline-flex items-center">
               <input
                 type="checkbox"
-                className="form-checkbox"
+                className="form-checkbox w-4 h-4 border-2 border-[#EB268F] rounded-sm"
                 checked={isChecked2}
                 required
                 onChange={(e) => setIsChecked2(e.target.checked)}

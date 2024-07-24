@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../assets/images/signup/logo.png";
 import customer from "../../assets/images/signup/customer.png";
 import Line from "../../assets/images/signup/Line.png";
@@ -12,9 +12,11 @@ import EventModal from "./EventModal";
 import Loading from '../Loading/index'
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "../../api/socialAuth";
+import { ImSpinner2 } from "react-icons/im";
 
 function Index() {
   const [loadingModal, setLoadingModal] = useState(false);
+  const [loading,setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showEventModal, setShowEventModal] = useState(false);
@@ -71,7 +73,7 @@ function Index() {
     <>
       <Loading showModal={loadingModal}/>
       <EventModal showEventModal={showEventModal} setShowEventModal={setShowEventModal}/>
-      <TermsModal showModal={showModal} setShowModal={setShowModal} UserData={SignupData} setShowEventModal={setShowEventModal}/>
+      <TermsModal showModal={showModal} setShowModal={setShowModal} UserData={SignupData} setShowEventModal={setShowEventModal} setLoading={setLoading}/>
       <div className="flex h-screen rounded-lg bg-[#050A44]">
         {/* Left Section */}
         <div className="bg-[#050A44] w-2/5 flex flex-col text-white relative p-5 ">
@@ -155,8 +157,14 @@ function Index() {
                 <span>{showPassword ? "Hide" : "Show"} password</span>
               </div>
                 <div>
-                  <button className="p-1 py-2 my-3 w-full border rounded-lg bg-[#EB268F] text-white font-semibold">
-                    Create Account
+                  <button disabled={loading} className="flex gap-2 justify-center items-center p-1 py-2 my-3 w-full border rounded-lg bg-[#EB268F] text-white font-semibold">
+                    <div>Create Account</div>
+                    {loading && (
+                      <ImSpinner2
+                        className="animate-spin"
+                        aria-label="loading"
+                      />
+                    )}
                   </button>
                 </div>
               </div>

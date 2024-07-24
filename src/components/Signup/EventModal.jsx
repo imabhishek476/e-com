@@ -24,7 +24,7 @@ const EventModal = ({ checked, showEventModal, setShowEventModal}) => {
           <div className="">
             <button
               className="bg-[#EB268F] text-white px-8 py-2 rounded-full font-serif"
-              onClick={() => navigate("/")}
+              onClick={() => window.location.replace("/")}
             >
               Go to Dashboard
             </button>
