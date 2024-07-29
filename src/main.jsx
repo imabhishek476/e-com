@@ -12,6 +12,7 @@ import NewArrival from './routes/NewArrival'
 import MostPopular from './routes/MostPopular'
 import Profile from './routes/Profile'
 import Customize from './routes/Customize'
+import CustomDesign from './routes/CustomDesign'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/terms&condition",
     element: <Terms/>,
+  },
+  {
+    path: "/custom-design/:pid/*",
+    element: <CustomDesign/>,
   },
 ]);
 
