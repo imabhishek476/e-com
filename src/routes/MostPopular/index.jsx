@@ -1,9 +1,5 @@
-import React from "react";
-import Sidebar from "../../components/Navbar/Sidebar";
-import Navbar from "../../components/Navbar/Navbar";
 import NewArrival from "../../components/Products/NewArrival";
 import Gurrantee from "../../components/Service/Gurrantee";
-import Footer from "../../components/Footer";
 import B2 from "../../assets/images/MostPopular/Banner1.png";
 import Banner2 from "../../assets/images/OnSale/Banner2.png";
 import Banner3 from "../../assets/images/OnSale/Banner3.png";
@@ -16,25 +12,17 @@ import JeansJacket from "../../assets/images/cart/jeans-jacket.png";
 import RayBan from "../../assets/images/cart/ray-ban.png";
 import BlackCoat from "../../assets/images/cart/black-coat.png";
 import Sweater from "../../assets/images/cart/pink-sweter.png";
+import Layout from "../../Layout";
 
 function index() {
   return (
-    <>
-      <div className="grid grid-cols-12 bg-white">
-        <div className="col-span-3 fixed h-screen bg-white border-black shadow-2xl w-[16.6%] hidden lg:block md:hidden z-100">
-          <Sidebar />
-        </div>
-        <div className="flex flex-col bg-gray-50 col-start-1 md:col-start-1 lg:col-start-3 col-end-13 md:col-end-13 lg:col-end-13 sticky">
-          <Navbar />
-          <PopularFunc />
-          <ShopByCategory title={"Sale On by Categories"} />
-          <NewArrival message={"On Sale"} />
-          <Banner />
-          <Gurrantee another={true} />
-          <Footer />
-        </div>
-      </div>
-    </>
+    <Layout>
+      <PopularFunc />
+      <ShopByCategory title={"Sale On by Categories"} />
+      <NewArrival message={"On Sale"} />
+      <Banner />
+      <Gurrantee another={true} />
+    </Layout>
   );
 }
 
