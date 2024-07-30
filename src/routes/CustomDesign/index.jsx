@@ -6,14 +6,36 @@ import { IoMdImages } from "react-icons/io";
 import TextModal from "../../components/FabricJs/Modal/TextModal";
 import UploadModal from "../../components/FabricJs/Modal/UploadModal";
 import GalleryModal from "../../components/FabricJs/Modal/GalleryModal";
+import { select } from "@material-tailwind/react";
 
 function index() {
+  const [activeCanvas, setActiveCanvas] = useState(false);
+  const [textValue, setTextValue] = useState("");
   const [canvas, setCanvas] = useState(null);
   const [modal, setModal] = useState("");
+  const [pageStack, setPageStack] = useState([]);
+  const checkPageStack = (num) => {
+    if (pageStack.includes(num)) {
+      setSelected({ ...selected, page: num });
+      setPageStack((p) => {
+        let newStack = [...p];
+        while (newStack.length) {
+          const popValue = newStack.pop();
+          if (popValue === num) {
+            return [...p, num];
+          }
+        }
+        return newStack;
+      });
+    } else {
+      // Handle the case where num is not in the stack
+      console.log(pageStack);
+    }
+  };
   const [selected, setSelected] = useState({
     color: "",
     size: "",
-    page: 2
+    page: 1
   });
   const size = ["S", "M", "L", "XL", "XXL"];
   const color = [
@@ -34,18 +56,17 @@ function index() {
   useEffect(() => {
     const handleSelection = (event) => {
       const activeObject = event;
-      console.log(activeObject)
+      console.log(activeObject);
       if (
         activeObject?.selected?.length < 2 &&
         activeObject.selected[0].type === "i-text"
       ) {
-        // setActiveCanvas(true);
-        // setTextValue(activeObject.selected[0].text)
-        setModal('text')
-        
+        setActiveCanvas(true);
+        setModal("text");
+        setTextValue(activeObject.selected[0].text);
       } else {
-        // setActiveCanvas(false);
-        setModal('')
+        setActiveCanvas(false);
+        setModal("");
       }
     };
 
@@ -76,7 +97,7 @@ function index() {
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full mx-[3rem] border-pink-600">
                 <button
-                  onClick={() => setSelected({ ...selected, page: 1 })}
+                  onClick={() => checkPageStack(1)}
                   className={`${
                     selected.page === 1 && "bg-pink-600"
                   } rounded-full px-3 py-1 m-[1px]`}
@@ -89,7 +110,7 @@ function index() {
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full mx-[3rem] border-pink-600">
                 <button
-                  onClick={() => setSelected({ ...selected, page: 2 })}
+                  onClick={() => checkPageStack(2)}
                   className={`${
                     selected.page === 2 && "bg-pink-600"
                   } rounded-full px-3 py-1 m-[1px]`}
@@ -102,7 +123,7 @@ function index() {
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full mx-[3rem] border-pink-600">
                 <button
-                  onClick={() => setSelected({ ...selected, page: 3 })}
+                  onClick={() => checkPageStack(3)}
                   className={`${
                     selected.page === 3 && "bg-pink-600"
                   } rounded-full px-3 py-1 m-[1px]`}
@@ -173,7 +194,7 @@ function index() {
           {/* fabric  */}
           {selected.page === 2 && (
             <div className="container h-screen relative">
-              <Designer modal={modal} setCanvas={setCanvas} canvas={canvas}/>
+              <Designer modal={modal} setCanvas={setCanvas} canvas={canvas} />
             </div>
           )}
           {selected.page === 3 && (
@@ -183,45 +204,77 @@ function index() {
             </div>
           )}
           <div className="flex flex-col w-full sticky bottom-0 z-0">
-            <div className="flex text-xs">
-              <button onClick={()=>setModal('text')} className="px-4 flex flex-col items-center border border-black bg-gray-200 w-2/4 p-2">
-                <div>
-                  <IoText />
-                </div>
-                <div>Add text</div>
-              </button>
-              <button className="px-4 flex flex-col items-center border border-black bg-gray-200 w-2/4 p-2">
-                <div>
-                  <IoImage />
-                </div>
-                <div>Upload</div>
-              </button>
-              <button className="px-4 flex flex-col items-center border border-black bg-gray-200 w-2/4 p-2">
-                <div>
-                  <IoCloudUploadOutline />
-                </div>
-                <div>Preview</div>
-              </button>
-            </div>
+            {selected.page === 2 && (
+              <div className="flex text-xs">
+                <button
+                  onClick={() => setModal("text")}
+                  className="px-4 flex flex-col items-center border border-black bg-gray-200 w-2/4 p-2"
+                >
+                  <div>
+                    <IoText />
+                  </div>
+                  <div>Add text</div>
+                </button>
+                <button
+                  onClick={() => setModal("upload")}
+                  className="px-4 flex flex-col items-center border border-black bg-gray-200 w-2/4 p-2"
+                >
+                  <div>
+                    <IoImage />
+                  </div>
+                  <div>Upload</div>
+                </button>
+                <button
+                  disabled
+                  onClick={() => setModal("gallery")}
+                  className="px-4 flex flex-col items-center border border-black bg-gray-200 w-2/4 p-2"
+                >
+                  <div>
+                    <IoCloudUploadOutline />
+                  </div>
+                  <div>Gallery</div>
+                </button>
+              </div>
+            )}
             <div className="flex 2-full">
-              <button className="border-1 border-[#050A44] py-[0.4rem] w-full">
-                Save
-              </button>
+              {selected.page === 2 && (
+                <button className="border-1 border-[#050A44] py-[0.4rem] w-full">
+                  Save
+                </button>
+              )}
               <button
                 disabled={selected.page === 3}
-                onClick={() =>
-                  setSelected({ ...selected, page: selected.page + 1 })
-                }
+                onClick={() => {
+                  setPageStack((p) =>
+                    p && p.includes(selected.page)
+                      ? [...p]
+                      : [...p, selected.page]
+                  );
+                  setSelected({ ...selected, page: selected.page + 1 });
+                }}
                 className="bg-[#050A44] py-[0.4rem] w-full text-white"
               >
                 Next{" "}
               </button>
             </div>
             <div className="">
-              {modal==='text' && <TextModal canvas={canvas} setModal={setModal}/>}
+              {modal === "text" && (
+                <TextModal
+                  canvas={canvas}
+                  setModal={setModal}
+                  activeCanvas={activeCanvas}
+                  setActiveCanvas={setActiveCanvas}
+                  textValue={textValue}
+                  setTextValue={setTextValue}
+                />
+              )}
               {/* {modal==='text' && <TextModal/>} */}
-              {false && <UploadModal canvas={canvas} setModal={setModal}/>}
-              {false && <GalleryModal canvas={canvas} setModal={setModal}/>}
+              {modal === "upload" && (
+                <UploadModal canvas={canvas} setModal={setModal} />
+              )}
+              {modal === "gallery" && (
+                <GalleryModal canvas={canvas} setModal={setModal} />
+              )}
             </div>
           </div>
         </div>

@@ -1,16 +1,50 @@
+import { RxCross2 } from "react-icons/rx";
+import * as fabric from 'fabric';
 
-function UploadModal() {
+
+function UploadModal({canvas, setModal}) {
+
+  const handleImageUpload = (e) => {
+    const reader = new FileReader();
+    console.log(e)
+    reader.onload = (event) => {
+        let imgObj = new Image();
+        imgObj.src = event.target.result;
+        console.log(event.target.result)
+        imgObj.onload = function () {
+            let img = new fabric.FabricImage(imgObj);
+            // console.log(img)
+            // console.log(canvas)
+            img.scaleToHeight(90);
+            img.scaleToWidth(90); 
+            canvas.centerObject(img);
+            canvas.add(img);
+            canvas.renderAll();
+        };
+    };
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const closeModal =()=>{
+    setModal('')
+  }
+
   return (
     <div id="myModal" className="fixed bottom-0 bg-white shadow-lg p-4 z-50">
+      <button onClick={closeModal} className="absolute -top-10 right-0 bg-white p-4">
+        <RxCross2 />
+      </button>
       <div className="flex w-[384px] justify-between items-center text-sm">
         <p className="">Upload an Image to place it on product</p>
-        <span className="close cursor-pointer text-xl">×</span>
       </div>
       <div className="flex items-center justify-center gap-4">
         <div className="w-full">
           <input
             type="file"
             maxLength="60"
+            onChange={handleImageUpload}
             className="w-full mt-2 p-2 rounded focus:border-none"
           />
         </div>

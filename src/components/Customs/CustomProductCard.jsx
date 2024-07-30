@@ -1,10 +1,12 @@
 import React from "react";
 import customImg from "../../assets/custom/CustomizableTshirt.png";
+import { useNavigate } from "react-router-dom";
 
 function CustomProductCard() {
+  const navigate = useNavigate()
   return (
-    <div className="">
-      <div className="rounded-lg">
+    <div className="cursor-pointer">
+      <div onClick={()=>navigate('/custom-design/123')} className="rounded-lg">
         <img src={customImg} alt="" />
       </div>
       <div className="m-1">

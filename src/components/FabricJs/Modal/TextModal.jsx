@@ -4,12 +4,12 @@ import { RxCross2, RxText } from "react-icons/rx";
 import * as fabric from "fabric";
 import { useEffect, useState } from "react";
 
-function TextModal({ canvas , setModal}) {
+function TextModal({ canvas , setModal,activeCanvas, setActiveCanvas, textValue, setTextValue}) {
   const [showTab, setShowTab] = useState("addText");
   const [currentFontFamily, setCurrentFontFamily] = useState("Arial");
   const [currentTextColor, setCurrentTextColor] = useState("black");
-  const [activeCanvas, setActiveCanvas] = useState(false);
-  const [textValue, setTextValue] = useState("");
+//   const [activeCanvas, setActiveCanvas] = useState(false);
+//   const [textValue, setTextValue] = useState("");
 
   const textColor = [
     "black",
@@ -39,8 +39,9 @@ function TextModal({ canvas , setModal}) {
     const activeObject = canvas.getActiveObject();
     if (activeObject && activeObject.type === "i-text") {
       activeObject.set({text});
+      canvas.renderAll();
     }
-    if (text) {
+    else if (text) {
       const newText = new fabric.IText(text, {
         left: 50,
         top: 100,
@@ -48,7 +49,7 @@ function TextModal({ canvas , setModal}) {
         fontFamily: "Arial"
       });
       canvas.add(newText);
-      setTextValue("");
+      setTextValue(text);
     }
   };
 
@@ -87,9 +88,13 @@ function TextModal({ canvas , setModal}) {
       ) {
         setActiveCanvas(true);
         setTextValue(activeObject.selected[0].text)
-      } else {
+      } 
+      else if(activeObject === null){
+        setModal('')
+      }
+      else {
         setActiveCanvas(false);
-        // setModal('')
+        setModal('')
       }
     };
 
