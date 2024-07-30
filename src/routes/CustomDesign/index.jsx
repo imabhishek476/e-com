@@ -15,10 +15,10 @@ function index() {
   const [textValue, setTextValue] = useState("");
   const [canvas, setCanvas] = useState(null);//fabricFront
   const [canvasBack, setCanvasBack] = useState(null)//fabricBack
-  const [canvasSide, setCanvasSide] = useState("front");
   const [modal, setModal] = useState("");
   const [pageStack, setPageStack] = useState([]);
   const checkPageStack = (num) => {
+    setModal('')
     if (pageStack.includes(num)) {
       setSelected({ ...selected, page: num });
       setPageStack((p) => {
@@ -127,6 +127,7 @@ function index() {
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full mx-[3rem] border-pink-600">
                 <button
+                  disabled={!pageStack.includes(1)}
                   onClick={() => checkPageStack(1)}
                   className={`${
                     selected.page === 1 && "bg-pink-600"
@@ -140,6 +141,7 @@ function index() {
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full mx-[3rem] border-pink-600">
                 <button
+                  disabled={!pageStack.includes(2)}
                   onClick={() => checkPageStack(2)}
                   className={`${
                     selected.page === 2 && "bg-pink-600"
@@ -153,6 +155,7 @@ function index() {
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full mx-[3rem] border-pink-600">
                 <button
+                  disabled={!pageStack.includes(3)}
                   onClick={() => checkPageStack(3)}
                   className={`${
                     selected.page === 3 && "bg-pink-600"
@@ -231,8 +234,6 @@ function index() {
                 previewUrl={previewUrl}
                 setPreviewUrl={setPreviewUrl}
                 tshirtDivRef={tshirtDivRef}
-                canvasSide={canvasSide}
-                setCanvasSide={setCanvasSide}
                 canvasBack={canvasBack}
                 setCanvasBack={setCanvasBack}
               />
@@ -305,6 +306,7 @@ function index() {
               {modal === "text" && (
                 <TextModal
                   canvas={canvas}
+                  canvasBack={canvasBack}
                   setModal={setModal}
                   activeCanvas={activeCanvas}
                   setActiveCanvas={setActiveCanvas}
@@ -314,7 +316,7 @@ function index() {
               )}
               {/* {modal==='text' && <TextModal/>} */}
               {modal === "upload" && (
-                <UploadModal canvas={canvas} setModal={setModal} />
+                <UploadModal canvas={canvas} canvasBack={canvasBack} setModal={setModal} />
               )}
               {modal === "gallery" && (
                 <GalleryModal canvas={canvas} setModal={setModal} />

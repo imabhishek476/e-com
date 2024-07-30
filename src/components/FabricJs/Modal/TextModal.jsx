@@ -3,13 +3,24 @@ import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 import { RxCross2, RxText } from "react-icons/rx";
 import * as fabric from "fabric";
 import { useEffect, useState } from "react";
+import useCustomStore from "../../../app/customStore";
 
-function TextModal({ canvas , setModal,activeCanvas, setActiveCanvas, textValue, setTextValue}) {
+function TextModal({
+  canvas,
+  canvasBack,
+  setModal,
+  activeCanvas,
+  setActiveCanvas,
+  textValue,
+  setTextValue
+}) {
   const [showTab, setShowTab] = useState("addText");
   const [currentFontFamily, setCurrentFontFamily] = useState("Arial");
   const [currentTextColor, setCurrentTextColor] = useState("black");
-//   const [activeCanvas, setActiveCanvas] = useState(false);
-//   const [textValue, setTextValue] = useState("");
+  //   const [activeCanvas, setActiveCanvas] = useState(false);
+  //   const [textValue, setTextValue] = useState("");
+
+  const { canvasSide } = useCustomStore();
 
   const textColor = [
     "black",
@@ -36,65 +47,97 @@ function TextModal({ canvas , setModal,activeCanvas, setActiveCanvas, textValue,
 
   const addText = () => {
     const text = textValue;
-    const activeObject = canvas.getActiveObject();
-    if (activeObject && activeObject.type === "i-text") {
-      activeObject.set({text});
-      canvas.renderAll();
-    }
-    else if (text) {
-      const newText = new fabric.IText(text, {
-        left: 50,
-        top: 100,
-        fill: "black",
-        fontFamily: "Arial"
-      });
-      canvas.add(newText);
-      setTextValue(text);
+    if (canvasSide === "front") {
+      const activeObject = canvas.getActiveObject();
+      if (activeObject && activeObject.type === "i-text") {
+        activeObject.set({ text });
+        canvas.renderAll();
+      } else if (text) {
+        const newText = new fabric.IText(text, {
+          left: 50,
+          top: 100,
+          fill: "black",
+          fontFamily: "Arial"
+        });
+        canvas.add(newText);
+        setTextValue(text);
+      }
+    } else {
+      const activeObject = canvasBack.getActiveObject();
+      if (activeObject && activeObject.type === "i-text") {
+        activeObject.set({ text });
+        canvasBack.renderAll();
+      } else if (text) {
+        const newText = new fabric.IText(text, {
+          left: 50,
+          top: 100,
+          fill: "black",
+          fontFamily: "Arial"
+        });
+        canvasBack.add(newText);
+        setTextValue(text);
+      }
     }
   };
 
   const handleFontChange = (i) => {
     const fontFamily = i;
     setCurrentFontFamily(i);
-    const activeObject = canvas.getActiveObject();
-    if (activeObject && activeObject.type === "i-text") {
-      activeObject.set({ fontFamily });
-      canvas.renderAll();
+    if (canvasSide === "front") {
+      const activeObject = canvas.getActiveObject();
+      if (activeObject && activeObject.type === "i-text") {
+        activeObject.set({ fontFamily });
+        canvas.renderAll();
+      }
+    } else {
+      const activeObject = canvasBack.getActiveObject();
+      if (activeObject && activeObject.type === "i-text") {
+        activeObject.set({ fontFamily });
+        canvasBack.renderAll();
+      }
     }
   };
   const changeTextColor = (tc) => {
     const newColor = tc;
-    setCurrentTextColor(tc)
-    const activeObject = canvas.getActiveObject();
-    if (activeObject && activeObject.type === 'i-text') {
-      activeObject.set({ fill: newColor });
-      canvas.renderAll();
+    setCurrentTextColor(tc);
+    if (canvasSide === "front") {
+      const activeObject = canvas.getActiveObject();
+      if (activeObject && activeObject.type === "i-text") {
+        activeObject.set({ fill: newColor });
+        canvas.renderAll();
+      }
+    } else {
+      const activeObject = canvasBack.getActiveObject();
+      if (activeObject && activeObject.type === "i-text") {
+        activeObject.set({ fill: newColor });
+        canvasBack.renderAll();
+      }
     }
   };
 
-  const closeModal=()=>{
-    setModal('')
+  const closeModal = () => {
+    setModal("");
     canvas.discardActiveObject();
     canvas.requestRenderAll();
-  }
+    canvasBack.discardActiveObject();
+    canvasBack.requestRenderAll();
+  };
 
   useEffect(() => {
     const handleSelection = (event) => {
       const activeObject = event;
-      console.log(activeObject)
+      console.log(activeObject);
       if (
         activeObject?.selected?.length < 2 &&
         activeObject.selected[0].type === "i-text"
       ) {
         setActiveCanvas(true);
-        setTextValue(activeObject.selected[0].text)
-      } 
-      else if(activeObject === null){
-        setModal('')
-      }
-      else {
+        setTextValue(activeObject.selected[0].text);
+      } else if (activeObject === null) {
+        setModal("");
+      } else {
         setActiveCanvas(false);
-        setModal('')
+        setModal("");
       }
     };
 
@@ -122,7 +165,10 @@ function TextModal({ canvas , setModal,activeCanvas, setActiveCanvas, textValue,
       id="myModal"
       className="fixed bottom-0 bg-white shadow-lg p-1 z-50 w-[24em]"
     >
-      <button onClick={closeModal} className="absolute -top-10 right-0 bg-white p-4">
+      <button
+        onClick={closeModal}
+        className="absolute -top-10 right-0 bg-white p-4"
+      >
         <RxCross2 />
       </button>
       {showTab === "addText" && (
@@ -190,9 +236,12 @@ function TextModal({ canvas , setModal,activeCanvas, setActiveCanvas, textValue,
                   return (
                     <button
                       key={tc}
-                      onClick={()=>changeTextColor(tc)}
+                      onClick={() => changeTextColor(tc)}
                       className="w-[30px] h-[30px] border rounded-full"
-                      style={{ backgroundColor: tc , border: currentTextColor=== tc && '2px solid black'}}
+                      style={{
+                        backgroundColor: tc,
+                        border: currentTextColor === tc && "2px solid black"
+                      }}
                     ></button>
                   );
                 })}

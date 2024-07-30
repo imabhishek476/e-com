@@ -14,8 +14,6 @@ function Designer({
   setPreviewUrl,
   previewUrl,
   tshirtDivRef,
-  canvasSide,
-  setCanvasSide,
   canvasBack,
   setCanvasBack
 }) {
@@ -29,33 +27,43 @@ function Designer({
     saveFrontFabricState,
     saveBackFabricState,
     loadFrontFabricState,
-    loadBackFabricState
+    loadBackFabricState,
+    setCanvasSide,
+    canvasSide
   } = useCustomStore();
 
   useEffect(() => {
     const initCanvas = new fabric.Canvas("fabric-canvas");
     const savedState = loadFrontFabricState();
     if (savedState) {
-      initCanvas.loadFromJSON(savedState, initCanvas.renderAll.bind(initCanvas));
+      initCanvas.loadFromJSON(
+        savedState,
+        initCanvas.renderAll.bind(initCanvas)
+      );
+      initCanvas.renderAll;
     }
     setCanvas(initCanvas);
     return () => {
       saveFrontFabricState(initCanvas.toJSON());
       initCanvas.dispose();
     };
-  }, [canvasSide === 'front']);
+  }, [canvasSide === "front"]);
   useEffect(() => {
     const initCanvasBack = new fabric.Canvas("fabric-canvas-back");
     const savedState = loadBackFabricState();
     if (savedState) {
-      initCanvasBack.loadFromJSON(savedState, initCanvasBack.renderAll.bind(initCanvasBack));
+      initCanvasBack.loadFromJSON(
+        savedState,
+        initCanvasBack.renderAll.bind(initCanvasBack)
+      );
+      initCanvasBack.renderAll;
     }
     setCanvasBack(initCanvasBack);
     return () => {
       saveBackFabricState(initCanvasBack.toJSON());
       initCanvasBack.dispose();
     };
-  }, [canvasSide === 'back']);
+  }, [canvasSide === "back"]);
 
   useEffect(() => {
     const handleSelection = (event) => {
@@ -126,7 +134,7 @@ function Designer({
         <div className="absolute top-0 right-0">
           <button
             onClick={() =>
-              setCanvasSide((p) => (p === "back" ? "front" : "back"))
+              setCanvasSide(canvasSide === "back" ? "front" : "back")
             }
           >
             <PiFlipHorizontalFill className="text-4xl" />

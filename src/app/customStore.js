@@ -4,7 +4,7 @@ import { devtools, persist } from "zustand/middleware";
 
 const customStore = (set, get) => ({
   page: { currentPage: 0, pageStack: [] },
-  customProductId:"",
+  customProductId: "",
   size: [],
   color: [],
   front: {
@@ -21,12 +21,13 @@ const customStore = (set, get) => ({
   updatedAt: {},
   frontFabric: null,
   backFabric: null,
+  canvasSide: "front",
   add: (states) => {
     set((state) => ({
       design: [...state.design, states]
     }));
   },
-  saveFrontFabricState: (data)=>{
+  saveFrontFabricState: (data) => {
     set((state) => ({
       frontFabric: data
     }));
@@ -41,9 +42,16 @@ const customStore = (set, get) => ({
   },
   loadBackFabricState: () => {
     return get().backFabric;
+  },
+  setCanvasSide: (side) => {
+    set((state) => ({
+      canvasSide: side
+    }));
   }
 });
 
-const useCustomStore = create(devtools(persist(customStore, { name: "fabric-store" })));
+const useCustomStore = create(
+  devtools(persist(customStore, { name: "fabric-store" }))
+);
 
 export default useCustomStore;
