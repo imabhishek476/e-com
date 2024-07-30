@@ -2,23 +2,60 @@ import { useEffect, useRef, useState } from "react";
 import * as fabric from "fabric";
 import html2canvas from "html2canvas";
 import FrontImage from "../../assets/custom/FrontTshirt.png";
-import BackImage from "../../assets/custom/BackTshirt.png";
+import BackImage from "../../assets/custom/red.png";
 import FabricCanvas from "./FabricCanvas";
 import TextModal from "./Modal/TextModal";
+import { PiFlipHorizontalFill } from "react-icons/pi";
+import useCustomStore from "../../app/customStore";
 
-function Designer({canvas, setCanvas}) {
-  const [previewUrl, setPreviewUrl] = useState(null);
+function Designer({
+  canvas,
+  setCanvas,
+  setPreviewUrl,
+  previewUrl,
+  tshirtDivRef,
+  canvasSide,
+  setCanvasSide,
+  canvasBack,
+  setCanvasBack
+}) {
+  // const [previewUrl, setPreviewUrl] = useState(null);
   // const [show, setShow] = useState(false);
-  const tshirtDivRef = useRef(null);
+  // const tshirtDivRef = useRef(null);
+
+  const {
+    frontFabric,
+    backFabric,
+    saveFrontFabricState,
+    saveBackFabricState,
+    loadFrontFabricState,
+    loadBackFabricState
+  } = useCustomStore();
 
   useEffect(() => {
     const initCanvas = new fabric.Canvas("fabric-canvas");
+    const savedState = loadFrontFabricState();
+    if (savedState) {
+      initCanvas.loadFromJSON(savedState, initCanvas.renderAll.bind(initCanvas));
+    }
     setCanvas(initCanvas);
     return () => {
-      // setCanvas(null);
+      saveFrontFabricState(initCanvas.toJSON());
       initCanvas.dispose();
     };
-  }, []);
+  }, [canvasSide === 'front']);
+  useEffect(() => {
+    const initCanvasBack = new fabric.Canvas("fabric-canvas-back");
+    const savedState = loadBackFabricState();
+    if (savedState) {
+      initCanvasBack.loadFromJSON(savedState, initCanvasBack.renderAll.bind(initCanvasBack));
+    }
+    setCanvasBack(initCanvasBack);
+    return () => {
+      saveBackFabricState(initCanvasBack.toJSON());
+      initCanvasBack.dispose();
+    };
+  }, [canvasSide === 'back']);
 
   useEffect(() => {
     const handleSelection = (event) => {
@@ -52,33 +89,48 @@ function Designer({canvas, setCanvas}) {
     };
   }, [canvas]);
 
-  const generatePreview = () => {
-    canvas.discardActiveObject();
-    canvas.renderAll();
-    console.log(canvas.toJSON());
-    if (tshirtDivRef.current) {
-      html2canvas(tshirtDivRef.current).then((canvas) => {
-        const dataUrl = canvas.toDataURL("image/png");
-        setPreviewUrl(dataUrl);
-      });
-    }
-  };
-
   return (
     <>
-      <div id="backgroundpicture">
+      <div id="backgroundpicture" style={{ position: "relative" }}>
         <div
           name="Front"
           ref={tshirtDivRef}
+          className=""
           style={{ position: "relative", backgroundColor: "transparent" }}
         >
-          <img
-            id=""
-            className="object-cover w-full"
-            src={FrontImage}
-            alt="FrontImage"
-          />
-          <FabricCanvas />
+          {/* {previewUrl &&(
+            <img className="object-cover w-full" src={previewUrl} alt="" srcset="" />
+          )} */}
+          {canvasSide === "front" && (
+            <>
+              <img
+                id=""
+                className="object-cover w-full"
+                src={FrontImage}
+                alt="FrontImage"
+              />
+            </>
+          )}
+          {canvasSide === "back" && (
+            <>
+              <img
+                id=""
+                className="object-cover w-full"
+                src={BackImage}
+                alt="BackImage"
+              />
+            </>
+          )}
+          <FabricCanvas canvasSide={canvasSide} />
+        </div>
+        <div className="absolute top-0 right-0">
+          <button
+            onClick={() =>
+              setCanvasSide((p) => (p === "back" ? "front" : "back"))
+            }
+          >
+            <PiFlipHorizontalFill className="text-4xl" />
+          </button>
         </div>
       </div>
     </>

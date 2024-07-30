@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../../Layout";
 import Designer from "../../components/FabricJs/Designer";
 import { IoCloudUploadOutline, IoImage, IoText } from "react-icons/io5";
@@ -6,12 +6,16 @@ import { IoMdImages } from "react-icons/io";
 import TextModal from "../../components/FabricJs/Modal/TextModal";
 import UploadModal from "../../components/FabricJs/Modal/UploadModal";
 import GalleryModal from "../../components/FabricJs/Modal/GalleryModal";
-import { select } from "@material-tailwind/react";
+import html2canvas from "html2canvas";
 
 function index() {
+  const tshirtDivRef = useRef(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const [activeCanvas, setActiveCanvas] = useState(false);
   const [textValue, setTextValue] = useState("");
-  const [canvas, setCanvas] = useState(null);
+  const [canvas, setCanvas] = useState(null);//fabricFront
+  const [canvasBack, setCanvasBack] = useState(null)//fabricBack
+  const [canvasSide, setCanvasSide] = useState("front");
   const [modal, setModal] = useState("");
   const [pageStack, setPageStack] = useState([]);
   const checkPageStack = (num) => {
@@ -52,6 +56,32 @@ function index() {
     // "#FF8A00",
     // "#31BD00"
   ];
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+
+  //     alert("User attempted to reload the site.");
+  //     event.preventDefault(); // Standard way to prevent the default action
+  //     event.returnValue = ''; // For older browsers
+  //   };
+
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   };
+  // }, []);
+
+  const generatePreview = () => {
+    canvas.discardActiveObject();
+    canvas.renderAll();
+    console.log(canvas.toJSON());
+    if (tshirtDivRef.current) {
+      html2canvas(tshirtDivRef.current).then((canvas) => {
+        const dataUrl = canvas.toDataURL("image/png");
+        setPreviewUrl(dataUrl);
+      });
+    }
+  };
 
   useEffect(() => {
     const handleSelection = (event) => {
@@ -194,7 +224,18 @@ function index() {
           {/* fabric  */}
           {selected.page === 2 && (
             <div className="container h-screen relative">
-              <Designer modal={modal} setCanvas={setCanvas} canvas={canvas} />
+              <Designer
+                modal={modal}
+                setCanvas={setCanvas}
+                canvas={canvas}
+                previewUrl={previewUrl}
+                setPreviewUrl={setPreviewUrl}
+                tshirtDivRef={tshirtDivRef}
+                canvasSide={canvasSide}
+                setCanvasSide={setCanvasSide}
+                canvasBack={canvasBack}
+                setCanvasBack={setCanvasBack}
+              />
             </div>
           )}
           {selected.page === 3 && (
@@ -238,7 +279,10 @@ function index() {
             )}
             <div className="flex 2-full">
               {selected.page === 2 && (
-                <button className="border-1 border-[#050A44] py-[0.4rem] w-full">
+                <button
+                  onClick={generatePreview}
+                  className="border-1 border-[#050A44] py-[0.4rem] w-full"
+                >
                   Save
                 </button>
               )}

@@ -120,7 +120,7 @@ function TextModal({ canvas , setModal,activeCanvas, setActiveCanvas, textValue,
   return (
     <div
       id="myModal"
-      className="fixed bottom-0 bg-white shadow-lg p-4 z-50  w-[24em]"
+      className="fixed bottom-0 bg-white shadow-lg p-1 z-50 w-[24em]"
     >
       <button onClick={closeModal} className="absolute -top-10 right-0 bg-white p-4">
         <RxCross2 />
