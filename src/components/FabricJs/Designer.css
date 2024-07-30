@@ -1,0 +1,49 @@
+#tshirt-div {
+    width: 452px;
+    height: 548px;
+    /* position: relative; */
+    background-color: #fff;
+  }
+  
+ .canvas-container{
+    /* width: 300px;
+    height: 400px; */
+    /* height: 100%;
+    width: 100%; */
+    /* position: absolute; */
+    /* bottom: 9px; */
+    /* right: 50px; */
+    /* right: 0px; */
+    /* left: 3.6rem; */
+    z-index: 10;
+  }
+  
+  #backgroundpicture {
+    /* width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    background-color: transparent; */
+
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  .designer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.controls{
+  display: flex;
+  /* justify-content: space-around; */
+  gap: 10px;
+}

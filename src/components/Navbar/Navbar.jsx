@@ -17,7 +17,7 @@ import { RiTruckFill } from "react-icons/ri";
 import { VscSettings } from "react-icons/vsc";
 import { GoDotFill } from "react-icons/go";
 
-function Navbar() {
+function Navbar({page}) {
   const [isUser, setIsUser] = useState(false);
   const [isOpen, setIsOpen] = useState(isUser);
   const [userProfile, setUserProfile] = useState(null);
@@ -51,7 +51,7 @@ function Navbar() {
   }, [isUser, cookies]);
 
   return (
-    <div className=" sticky top-0 text-black z-10 p-3 pr-0 bg-gray-50">
+    <div className={`${page==='custom' ? 'fixed w-full' : 'sticky'} top-0 text-black z-10 p-3 pr-0 bg-gray-50`}>
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <span className="font-semibold text-inherit">Top Fashion Brands</span>

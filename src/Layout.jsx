@@ -11,7 +11,7 @@ function Layout({children, page}) {
           {page !== "custom" && <Sidebar />}
         </div>
         <div className="flex flex-col bg-gray-50 col-start-1 md:col-start-1 lg:col-start-3 col-end-13 md:col-end-13 lg:col-end-13 sticky">
-          <Navbar />
+          <Navbar page={page}/>
           {children}
           {page !== "custom" && <Footer />}
         </div>
