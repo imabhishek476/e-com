@@ -16,7 +16,7 @@ function TextModal({
 }) {
   const [showTab, setShowTab] = useState("addText");
   const [currentFontFamily, setCurrentFontFamily] = useState("Arial");
-  const [currentTextColor, setCurrentTextColor] = useState("black");
+  const [currentTextColor, setCurrentTextColor] = useState("white");
   //   const [activeCanvas, setActiveCanvas] = useState(false);
   //   const [textValue, setTextValue] = useState("");
 
@@ -56,7 +56,7 @@ function TextModal({
         const newText = new fabric.IText(text, {
           left: 50,
           top: 100,
-          fill: "black",
+          fill: "white",
           fontFamily: "Arial"
         });
         canvas.add(newText);
@@ -126,7 +126,8 @@ function TextModal({
   useEffect(() => {
     const handleSelection = (event) => {
       const activeObject = event;
-      console.log(activeObject);
+      const activeobj = canvas.getActiveObject()
+      console.log(activeobj);
       if (
         activeObject?.selected?.length < 2 &&
         activeObject.selected[0].type === "i-text"

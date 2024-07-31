@@ -119,6 +119,44 @@ function index() {
     };
   }, [canvas]);
 
+
+
+  useEffect(() => {
+    const handleSelection = (event) => {
+      const activeObject = event;
+      console.log(activeObject);
+      if (
+        activeObject?.selected?.length < 2 &&
+        activeObject.selected[0].type === "i-text"
+      ) {
+        setActiveCanvas(true);
+        setModal("text");
+        setTextValue(activeObject.selected[0].text);
+      } else {
+        setActiveCanvas(false);
+        setModal("");
+      }
+    };
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        return e.code == "Delete"
+          ? canvasBack.remove(canvas.getActiveObject())
+          : false;
+      },
+      false
+    );
+
+    canvasBack?.on("selection:created", handleSelection);
+    canvasBack?.on("selection:cleared", handleSelection);
+    canvasBack?.on("selection:updated", handleSelection);
+    return () => {
+      canvasBack?.off("selection:created", handleSelection);
+      canvasBack?.off("selection:updated", handleSelection);
+    };
+  }, [canvasBack]);
+
   return (
     <Layout page={"custom"}>
       <div className="flex flex-col items-center w-full h-screen overflow-y-hidden mt-[64px]">
@@ -288,7 +326,7 @@ function index() {
                 </button>
               )}
               <button
-                disabled={selected.page === 3}
+                disabled={selected.page === 3 || !selected.color || !selected.size}
                 onClick={() => {
                   setPageStack((p) =>
                     p && p.includes(selected.page)
@@ -296,6 +334,7 @@ function index() {
                       : [...p, selected.page]
                   );
                   setSelected({ ...selected, page: selected.page + 1 });
+                  selected.page === 1 ? localStorage.removeItem('fabric-store') :''
                 }}
                 className="bg-[#050A44] py-[0.4rem] w-full text-white"
               >

@@ -22,6 +22,8 @@ const customStore = (set, get) => ({
   frontFabric: null,
   backFabric: null,
   canvasSide: "front",
+  frontPreview: null,
+  backPreview: null,
   add: (states) => {
     set((state) => ({
       design: [...state.design, states]
@@ -47,6 +49,12 @@ const customStore = (set, get) => ({
     set((state) => ({
       canvasSide: side
     }));
+  },
+  setPreview:(dataImg)=>{
+    set((state)=>({
+      frontPreview:null,
+      backPreview:null
+    }))
   }
 });
 

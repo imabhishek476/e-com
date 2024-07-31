@@ -4,9 +4,14 @@ import html2canvas from "html2canvas";
 import FrontImage from "../../assets/custom/FrontTshirt.png";
 import BackImage from "../../assets/custom/red.png";
 import FabricCanvas from "./FabricCanvas";
-import TextModal from "./Modal/TextModal";
 import { PiFlipHorizontalFill } from "react-icons/pi";
 import useCustomStore from "../../app/customStore";
+import {
+  deleteObject,
+  deleteObjectForBack,
+  renderIcon,
+  renderIconForBack
+} from "./DeleteControl";
 
 function Designer({
   canvas,
@@ -15,7 +20,8 @@ function Designer({
   previewUrl,
   tshirtDivRef,
   canvasBack,
-  setCanvasBack
+  setCanvasBack,
+  modal
 }) {
   // const [previewUrl, setPreviewUrl] = useState(null);
   // const [show, setShow] = useState(false);
@@ -43,11 +49,50 @@ function Designer({
       initCanvas.renderAll;
     }
     setCanvas(initCanvas);
+
+    initCanvas.on("object:added", (e) => {
+      const obj = e.target;
+      obj.controls.deleteControl = new fabric.Control({
+        x: 0.5,
+        y: -0.5,
+        offsetY: 1,
+        cursorStyle: "pointer",
+        mouseUpHandler: deleteObject,
+        render: renderIcon,
+        cornerSize: 18
+      });
+      obj.set({
+        hasControls: true,
+        cornerSize: 8,
+        cornerColor: "white",
+        cornerStyle: "rect",
+        cornerStrokeColor: "white",
+        transparentCorners: false
+      });
+    });
+
+    // Define keydown handler function
+    const handleKeyDown = (e) => {
+      const activeObject = initCanvas.getActiveObject();
+      console.log(activeObject);
+      activeObject.controls.deleteControl.visible = true;
+      initCanvas.renderAll();
+      if (/^[a-zA-Z0-9]$/.test(e.key)) {
+        e.preventDefault(); // Disable character keys
+      }
+      // Add more conditions to handle other specific keys if needed
+    };
+    // Function to bind keydown event to canvas
+    initCanvas.upperCanvasEl.addEventListener("keydown", handleKeyDown);
+    // Function to unbind keydown event from canvas
+    initCanvas.upperCanvasEl.removeEventListener("keydown", handleKeyDown);
+
+    // Bind keydown event to the canvas
     return () => {
       saveFrontFabricState(initCanvas.toJSON());
       initCanvas.dispose();
     };
-  }, [canvasSide === "front"]);
+  }, [canvasSide]);
   useEffect(() => {
     const initCanvasBack = new fabric.Canvas("fabric-canvas-back");
     const savedState = loadBackFabricState();
@@ -59,11 +104,31 @@ function Designer({
       initCanvasBack.renderAll;
     }
     setCanvasBack(initCanvasBack);
+    initCanvasBack.on("object:added", (e) => {
+      const obj = e.target;
+      obj.controls.deleteControl = new fabric.Control({
+        x: 0.5,
+        y: -0.5,
+        offsetY: 1,
+        cursorStyle: "pointer",
+        mouseUpHandler: deleteObjectForBack,
+        render: renderIconForBack,
+        cornerSize: 18
+      });
+      obj.set({
+        hasControls: true,
+        cornerSize: 8,
+        cornerColor: "white",
+        cornerStyle: "rect",
+        cornerStrokeColor: "white",
+        transparentCorners: false
+      });
+    });
     return () => {
       saveBackFabricState(initCanvasBack.toJSON());
       initCanvasBack.dispose();
     };
-  }, [canvasSide === "back"]);
+  }, [canvasSide]);
 
   useEffect(() => {
     const handleSelection = (event) => {
@@ -131,13 +196,22 @@ function Designer({
           )}
           <FabricCanvas canvasSide={canvasSide} />
         </div>
-        <div className="absolute top-0 right-0">
+        <div
+          style={{ display: modal && "none" }}
+          className="absolute top-0 right-0"
+        >
           <button
             onClick={() =>
               setCanvasSide(canvasSide === "back" ? "front" : "back")
             }
           >
-            <PiFlipHorizontalFill className="text-4xl" />
+            <PiFlipHorizontalFill
+              style={{
+                WebkitTransform: canvasSide === "back" && "scaleX(-1)",
+                transform: canvasSide === "back" && "scaleX(-1)"
+              }}
+              className="text-4xl"
+            />
           </button>
         </div>
       </div>
