@@ -54,7 +54,7 @@ function UploadModal({ canvas, canvasBack, setModal }) {
     <div id="myModal" className="fixed bottom-0 bg-white shadow-lg p-4 z-50">
       <button
         onClick={closeModal}
-        className="absolute -top-10 right-0 bg-white p-4"
+        className="absolute -top-10 right-0 bg-white border border-gray-400 p-3"
       >
         <RxCross2 />
       </button>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as fabric from "fabric";
 import html2canvas from "html2canvas";
 import FrontImage from "../../assets/custom/FrontTshirt.png";
-import BackImage from "../../assets/custom/red.png";
+import BackImage from "../../assets/custom/backView.png";
 import FabricCanvas from "./FabricCanvas";
 import { PiFlipHorizontalFill } from "react-icons/pi";
 import useCustomStore from "../../app/customStore";

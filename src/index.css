@@ -14,3 +14,11 @@
 }
 
 
+/* ::-webkit-selection {
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white; 
+} */
+
+::selection {
+  @apply bg-pink-200 text-black
+}

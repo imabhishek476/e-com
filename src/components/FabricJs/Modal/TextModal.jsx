@@ -45,7 +45,8 @@ function TextModal({
   ];
   //   const textColor = []
 
-  const addText = () => {
+  const addText = (e) => {
+    e.preventDefault()
     const text = textValue;
     if (canvasSide === "front") {
       const activeObject = canvas.getActiveObject();
@@ -71,7 +72,7 @@ function TextModal({
         const newText = new fabric.IText(text, {
           left: 50,
           top: 100,
-          fill: "black",
+          fill: "white",
           fontFamily: "Arial"
         });
         canvasBack.add(newText);
@@ -164,11 +165,11 @@ function TextModal({
   return (
     <div
       id="myModal"
-      className="fixed bottom-0 bg-white shadow-lg p-1 z-50 w-[24em]"
+      className="fixed bottom-0 bg-white shadow-lg pt-1 px-2 pb-0 z-50 w-[24em]"
     >
       <button
         onClick={closeModal}
-        className="absolute -top-10 right-0 bg-white p-4"
+        className="absolute -top-10 right-0 bg-white border border-gray-400 p-3"
       >
         <RxCross2 />
       </button>
@@ -177,7 +178,7 @@ function TextModal({
           <div className="flex justify-between items-center text-sm">
             <p className="">Tap to enter text</p>
           </div>
-          <div className="flex items-center justify-center gap-4">
+          <form className="flex items-center justify-center gap-2">
             <div className="w-full">
               <input
                 id="fabricTextBox"
@@ -192,13 +193,14 @@ function TextModal({
               </label>
             </div>
             <button
+              type="submit"
               disabled={!textValue}
               onClick={addText}
-              className="confirm mb-4 bg-blue-500 text-white py-2 px-4 rounded"
+              className="confirm mb-5 bg-blue-500 text-white py-2 px-4 rounded"
             >
               ✔
             </button>
-          </div>
+          </form>
         </div>
       )}
       {showTab === "fontFamily" && (

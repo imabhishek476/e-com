@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Layout from "../../Layout";
 import Designer from "../../components/FabricJs/Designer";
+import Snackbar from "../../components/Warning/Snackbar";
 import { IoCloudUploadOutline, IoImage, IoText } from "react-icons/io5";
 import { IoMdImages } from "react-icons/io";
 import TextModal from "../../components/FabricJs/Modal/TextModal";
@@ -8,17 +9,33 @@ import UploadModal from "../../components/FabricJs/Modal/UploadModal";
 import GalleryModal from "../../components/FabricJs/Modal/GalleryModal";
 import html2canvas from "html2canvas";
 
+const size = ["S", "M", "L", "XL", "XXL"];
+const color = [
+  "#FF0000",
+  "black",
+  "#0062CC",
+  "#F000D8",
+  "green",
+  "#EBFF00"
+  // "#00FF38",
+  // "#4F2323",
+  // "#3C3C3C",
+  // "#CC0CD0",
+  // "#FF8A00",
+  // "#31BD00"
+];
+
 function index() {
   const tshirtDivRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [activeCanvas, setActiveCanvas] = useState(false);
   const [textValue, setTextValue] = useState("");
-  const [canvas, setCanvas] = useState(null);//fabricFront
-  const [canvasBack, setCanvasBack] = useState(null)//fabricBack
+  const [canvas, setCanvas] = useState(null); //fabricFront
+  const [canvasBack, setCanvasBack] = useState(null); //fabricBack
   const [modal, setModal] = useState("");
   const [pageStack, setPageStack] = useState([]);
   const checkPageStack = (num) => {
-    setModal('')
+    setModal("");
     if (pageStack.includes(num)) {
       setSelected({ ...selected, page: num });
       setPageStack((p) => {
@@ -41,21 +58,6 @@ function index() {
     size: "",
     page: 1
   });
-  const size = ["S", "M", "L", "XL", "XXL"];
-  const color = [
-    "#FF0000",
-    "black",
-    "#0062CC",
-    "#F000D8",
-    "#050A44",
-    "#EBFF00"
-    // "#00FF38",
-    // "#4F2323",
-    // "#3C3C3C",
-    // "#CC0CD0",
-    // "#FF8A00",
-    // "#31BD00"
-  ];
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
 
@@ -119,8 +121,6 @@ function index() {
     };
   }, [canvas]);
 
-
-
   useEffect(() => {
     const handleSelection = (event) => {
       const activeObject = event;
@@ -169,7 +169,7 @@ function index() {
                   onClick={() => checkPageStack(1)}
                   className={`${
                     selected.page === 1 && "bg-pink-600"
-                  } rounded-full px-3 py-1 m-[1px]`}
+                  } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   1
                 </button>
@@ -183,7 +183,7 @@ function index() {
                   onClick={() => checkPageStack(2)}
                   className={`${
                     selected.page === 2 && "bg-pink-600"
-                  } rounded-full px-3 py-1 m-[1px]`}
+                  } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   2
                 </button>
@@ -197,7 +197,7 @@ function index() {
                   onClick={() => checkPageStack(3)}
                   className={`${
                     selected.page === 3 && "bg-pink-600"
-                  } rounded-full px-3 py-1 m-[1px]`}
+                  } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   3
                 </button>
@@ -208,6 +208,14 @@ function index() {
           <div className="border-b-3 my-1"></div>
           {selected.page === 1 && (
             <div className="container h-screen">
+              {false && (
+                <Snackbar
+                  duration={3000}
+                  message={"Please Select Size and Color"}
+                  type={"success"}
+                  onClose={() => ""}
+                />
+              )}
               <div className="my-2">
                 <h4 className="font-semibold">Select Color</h4>
               </div>
@@ -215,7 +223,7 @@ function index() {
                 {color &&
                   color.map((item) => {
                     return (
-                      <div key={item} className="m-2">
+                      <div key={item} className="m-2 text-center">
                         <button
                           style={{
                             backgroundColor:
@@ -326,7 +334,9 @@ function index() {
                 </button>
               )}
               <button
-                disabled={selected.page === 3 || !selected.color || !selected.size}
+                disabled={
+                  selected.page === 3 || !selected.color || !selected.size
+                }
                 onClick={() => {
                   setPageStack((p) =>
                     p && p.includes(selected.page)
@@ -334,7 +344,9 @@ function index() {
                       : [...p, selected.page]
                   );
                   setSelected({ ...selected, page: selected.page + 1 });
-                  selected.page === 1 ? localStorage.removeItem('fabric-store') :''
+                  selected.page === 1
+                    ? localStorage.removeItem("fabric-store")
+                    : "";
                 }}
                 className="bg-[#050A44] py-[0.4rem] w-full text-white"
               >
@@ -355,7 +367,11 @@ function index() {
               )}
               {/* {modal==='text' && <TextModal/>} */}
               {modal === "upload" && (
-                <UploadModal canvas={canvas} canvasBack={canvasBack} setModal={setModal} />
+                <UploadModal
+                  canvas={canvas}
+                  canvasBack={canvasBack}
+                  setModal={setModal}
+                />
               )}
               {modal === "gallery" && (
                 <GalleryModal canvas={canvas} setModal={setModal} />
