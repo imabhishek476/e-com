@@ -20,7 +20,7 @@ function FabricCanvas({ canvasSide }) {
           id="fabric-canvas-back"
           width={160}
           height={280}
-          className=""
+          style={{border: '1px dashed rgb(151,151,151)'}}
         ></canvas>
       </div>
     </>

@@ -3,7 +3,7 @@ import Layout from "../../Layout";
 import Designer from "../../components/FabricJs/Designer";
 import Preview from "../../components/FabricJs/Preview";
 import Snackbar from "../../components/Warning/Snackbar";
-import FrontImage from '../../assets/custom/FrontTshirt.png';
+import FrontImage from "../../assets/custom/FrontTshirt.png";
 import BackImage from "../../assets/custom/backView.png";
 import { IoCloudUploadOutline, IoImage, IoText } from "react-icons/io5";
 import { IoMdImages } from "react-icons/io";
@@ -11,6 +11,8 @@ import TextModal from "../../components/FabricJs/Modal/TextModal";
 import UploadModal from "../../components/FabricJs/Modal/UploadModal";
 import GalleryModal from "../../components/FabricJs/Modal/GalleryModal";
 import html2canvas from "html2canvas";
+import useCustomStore from "../../app/customStore";
+import PreviewTab from "../../components/FabricJs/PreviewTab";
 
 const size = ["S", "M", "L", "XL", "XXL"];
 const color = [
@@ -30,13 +32,13 @@ const color = [
 
 function index() {
   const tshirtDivRef = useRef(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
   const [activeCanvas, setActiveCanvas] = useState(false);
   const [textValue, setTextValue] = useState("");
   const [canvas, setCanvas] = useState(null); //fabricFront
   const [canvasBack, setCanvasBack] = useState(null); //fabricBack
   const [modal, setModal] = useState("");
   const [pageStack, setPageStack] = useState([]);
+  const { setPreview } = useCustomStore();
   const checkPageStack = (num) => {
     setModal("");
     if (pageStack.includes(num)) {
@@ -79,13 +81,18 @@ function index() {
   const generatePreview = () => {
     canvas.discardActiveObject();
     canvas.renderAll();
-    console.log(canvas.toJSON());
-    if (tshirtDivRef.current) {
-      html2canvas(tshirtDivRef.current).then((canvas) => {
-        const dataUrl = canvas.toDataURL("image/png");
-        setPreviewUrl(dataUrl);
-      });
-    }
+    canvasBack.discardActiveObject();
+    canvasBack.renderAll();
+    // console.log(canvas.toJSON());
+    const dataUrlFront = canvas.toDataURL("image/png");
+    const dataUrlBack = canvas.toDataURL("image/png");
+    setPreview({ front: dataUrlFront, back: dataUrlBack });
+    // if (tshirtDivRef.current) {
+    //   html2canvas(tshirtDivRef.current).then((canvas) => {
+    //     const dataUrl = canvas.toDataURL("image/png");
+    //     setPreviewUrl(dataUrl);
+    //   });
+    // }
   };
 
   useEffect(() => {
@@ -171,7 +178,8 @@ function index() {
                   disabled={!pageStack.includes(1)}
                   onClick={() => checkPageStack(1)}
                   className={`${
-                    (selected.page === 1 || pageStack.includes(1)) && "bg-pink-600"
+                    (selected.page === 1 || pageStack.includes(1)) &&
+                    "bg-pink-600"
                   } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   1
@@ -185,7 +193,8 @@ function index() {
                   disabled={!pageStack.includes(2)}
                   onClick={() => checkPageStack(2)}
                   className={`${
-                    (selected.page === 2 || pageStack.includes(2)) && "bg-pink-600"
+                    (selected.page === 2 || pageStack.includes(2)) &&
+                    "bg-pink-600"
                   } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   2
@@ -199,7 +208,8 @@ function index() {
                   disabled={!pageStack.includes(3)}
                   onClick={() => checkPageStack(3)}
                   className={`${
-                    (selected.page === 3 || pageStack.includes(3)) && "bg-pink-600"
+                    (selected.page === 3 || pageStack.includes(3)) &&
+                    "bg-pink-600"
                   } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   3
@@ -280,8 +290,6 @@ function index() {
                 modal={modal}
                 setCanvas={setCanvas}
                 canvas={canvas}
-                previewUrl={previewUrl}
-                setPreviewUrl={setPreviewUrl}
                 tshirtDivRef={tshirtDivRef}
                 canvasBack={canvasBack}
                 setCanvasBack={setCanvasBack}
@@ -292,7 +300,7 @@ function index() {
           )}
           {selected.page === 3 && (
             <div className="container h-screen relative">
-              <Preview FrontImage={FrontImage} BackImage={BackImage}/>
+              <Preview FrontImage={FrontImage} BackImage={BackImage} />
             </div>
           )}
           <div className="flex flex-col w-full sticky bottom-0 z-0">
@@ -328,15 +336,8 @@ function index() {
                 </button>
               </div>
             )}
+            {selected.page === 3 && <PreviewTab />}
             <div className="flex 2-full">
-              {selected.page === 2 && (
-                <button
-                  onClick={generatePreview}
-                  className="border-1 border-[#050A44] py-[0.4rem] w-full"
-                >
-                  Save
-                </button>
-              )}
               <button
                 disabled={
                   selected.page === 3 || !selected.color || !selected.size
@@ -347,14 +348,16 @@ function index() {
                       ? [...p]
                       : [...p, selected.page]
                   );
-                  setSelected({ ...selected, page: selected.page + 1 });
                   selected.page === 1
                     ? localStorage.removeItem("fabric-store")
                     : "";
+                  setSelected({ ...selected, page: selected.page + 1 });
+
+                  selected.page === 2 && generatePreview();
                 }}
                 className="bg-[#050A44] py-[0.4rem] w-full text-white"
               >
-                Next{" "}
+                {selected.page === 2 && "Save & "}Next{" "}
               </button>
             </div>
             <div className="">

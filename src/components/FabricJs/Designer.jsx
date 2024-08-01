@@ -14,8 +14,6 @@ import {
 function Designer({
   canvas,
   setCanvas,
-  setPreviewUrl,
-  previewUrl,
   tshirtDivRef,
   canvasBack,
   setCanvasBack,
@@ -23,7 +21,6 @@ function Designer({
   FrontImage,
   BackImage
 }) {
-  // const [previewUrl, setPreviewUrl] = useState(null);
   // const [show, setShow] = useState(false);
   // const tshirtDivRef = useRef(null);
 
@@ -171,9 +168,6 @@ function Designer({
           className=""
           style={{ position: "relative", backgroundColor: "transparent" }}
         >
-          {/* {previewUrl &&(
-            <img className="object-cover w-full" src={previewUrl} alt="" srcset="" />
-          )} */}
           {canvasSide === "front" && (
             <>
               <img

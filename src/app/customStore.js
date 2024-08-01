@@ -52,8 +52,8 @@ const customStore = (set, get) => ({
   },
   setPreview:(dataImg)=>{
     set((state)=>({
-      frontPreview:null,
-      backPreview:null
+      frontPreview:dataImg.front,
+      backPreview:dataImg.back
     }))
   }
 });
