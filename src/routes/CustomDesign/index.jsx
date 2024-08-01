@@ -85,7 +85,7 @@ function index() {
     canvasBack.renderAll();
     // console.log(canvas.toJSON());
     const dataUrlFront = canvas.toDataURL("image/png");
-    const dataUrlBack = canvas.toDataURL("image/png");
+    const dataUrlBack = canvasBack.toDataURL("image/png");
     setPreview({ front: dataUrlFront, back: dataUrlBack });
     // if (tshirtDivRef.current) {
     //   html2canvas(tshirtDivRef.current).then((canvas) => {
