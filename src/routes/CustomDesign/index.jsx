@@ -170,7 +170,7 @@ function index() {
   return (
     <Layout page={"custom"}>
       <div className="flex flex-col items-center w-full h-screen overflow-y-hidden mt-[64px]">
-        <div className="w-[30%] fixed">
+        <div className="w-[384px] fixed">
           <ul className="flex justify-between items-center w-[90%] mx-5">
             <li className="text-center text-xs text-pink-600">
               <div className="border-2 rounded-full border-pink-600">
@@ -229,7 +229,7 @@ function index() {
             <div className="pr-8">Design</div>
             <div className="pr-3">Preview</div>
           </div>
-          <div className="border-b-3 my-1"></div>
+          <div className="border border-black mt-1 mr-3"></div>
           {selected.page === 1 && (
             <div className="container h-screen">
               {false && (
