@@ -357,7 +357,7 @@ function index() {
                 }}
                 className="bg-[#050A44] py-[0.4rem] w-full text-white"
               >
-                {selected.page === 2 && "Save & "}Next{" "}
+                { selected.page === 1 ? 'Next': (selected.page === 2 ? 'Save & Next' : 'Add To Cart')}
               </button>
             </div>
             <div className="">
