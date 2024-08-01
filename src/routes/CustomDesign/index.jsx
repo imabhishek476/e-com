@@ -171,9 +171,9 @@ function index() {
     <Layout page={"custom"}>
       <div className="flex flex-col items-center w-full h-screen overflow-y-hidden mt-[64px]">
         <div className="w-[30%] fixed">
-          <ul className="flex justify-between">
+          <ul className="flex justify-between items-center w-[90%] mx-5">
             <li className="text-center text-xs text-pink-600">
-              <div className="border-2 rounded-full mx-[3rem] border-pink-600">
+              <div className="border-2 rounded-full border-pink-600">
                 <button
                   disabled={!pageStack.includes(1)}
                   onClick={() => checkPageStack(1)}
@@ -185,10 +185,13 @@ function index() {
                   1
                 </button>
               </div>
-              <p>Pick Color & Size</p>
+              {/* <p>Pick Color & Size</p> */}
+            </li>
+            <li className="w-full mx-1">
+              <hr style={{borderColor: (pageStack.includes(1)) && "#db2777"}} className="border-2 rounded-lg"/>
             </li>
             <li className="text-center text-xs text-pink-600">
-              <div className="border-2 rounded-full mx-[3rem] border-pink-600">
+              <div className="border-2 rounded-full border-pink-600">
                 <button
                   disabled={!pageStack.includes(2)}
                   onClick={() => checkPageStack(2)}
@@ -200,10 +203,13 @@ function index() {
                   2
                 </button>
               </div>
-              <p>Final Design</p>
+              {/* <p>Final Design</p> */}
+            </li>
+            <li className="w-full mx-1">
+              <hr style={{borderColor: (pageStack.includes(2)) && "#db2777"}} className="border-2 rounded-lg"/>
             </li>
             <li className="text-center text-xs text-pink-600">
-              <div className="border-2 rounded-full mx-[3rem] border-pink-600">
+              <div className="border-2 rounded-full border-pink-600">
                 <button
                   disabled={!pageStack.includes(3)}
                   onClick={() => checkPageStack(3)}
@@ -215,9 +221,14 @@ function index() {
                   3
                 </button>
               </div>
-              <p>Preview</p>
+              {/* <p>Preview</p> */}
             </li>
           </ul>
+          <div className="flex justify-between w-full text-xs">
+            <div>Pick Color & size</div>
+            <div className="pr-8">Design</div>
+            <div className="pr-3">Preview</div>
+          </div>
           <div className="border-b-3 my-1"></div>
           {selected.page === 1 && (
             <div className="container h-screen">
