@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Layout from "../../Layout";
 import Designer from "../../components/FabricJs/Designer";
+import Preview from "../../components/FabricJs/Preview";
 import Snackbar from "../../components/Warning/Snackbar";
+import FrontImage from '../../assets/custom/FrontTshirt.png';
+import BackImage from "../../assets/custom/backView.png";
 import { IoCloudUploadOutline, IoImage, IoText } from "react-icons/io5";
 import { IoMdImages } from "react-icons/io";
 import TextModal from "../../components/FabricJs/Modal/TextModal";
@@ -168,7 +171,7 @@ function index() {
                   disabled={!pageStack.includes(1)}
                   onClick={() => checkPageStack(1)}
                   className={`${
-                    selected.page === 1 && "bg-pink-600"
+                    (selected.page === 1 || pageStack.includes(1)) && "bg-pink-600"
                   } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   1
@@ -182,7 +185,7 @@ function index() {
                   disabled={!pageStack.includes(2)}
                   onClick={() => checkPageStack(2)}
                   className={`${
-                    selected.page === 2 && "bg-pink-600"
+                    (selected.page === 2 || pageStack.includes(2)) && "bg-pink-600"
                   } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   2
@@ -196,7 +199,7 @@ function index() {
                   disabled={!pageStack.includes(3)}
                   onClick={() => checkPageStack(3)}
                   className={`${
-                    selected.page === 3 && "bg-pink-600"
+                    (selected.page === 3 || pageStack.includes(3)) && "bg-pink-600"
                   } rounded-full px-[0.6rem] py-1 m-[1px]`}
                 >
                   3
@@ -282,13 +285,14 @@ function index() {
                 tshirtDivRef={tshirtDivRef}
                 canvasBack={canvasBack}
                 setCanvasBack={setCanvasBack}
+                FrontImage={FrontImage}
+                BackImage={BackImage}
               />
             </div>
           )}
           {selected.page === 3 && (
-            <div className="container h-screen">
-              <div>Preview</div>
-              <div>Image</div>
+            <div className="container h-screen relative">
+              <Preview FrontImage={FrontImage} BackImage={BackImage}/>
             </div>
           )}
           <div className="flex flex-col w-full sticky bottom-0 z-0">

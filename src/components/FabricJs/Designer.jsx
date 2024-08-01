@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as fabric from "fabric";
 import html2canvas from "html2canvas";
-import FrontImage from "../../assets/custom/FrontTshirt.png";
-import BackImage from "../../assets/custom/backView.png";
 import FabricCanvas from "./FabricCanvas";
 import { PiFlipHorizontalFill } from "react-icons/pi";
 import useCustomStore from "../../app/customStore";
@@ -21,7 +19,9 @@ function Designer({
   tshirtDivRef,
   canvasBack,
   setCanvasBack,
-  modal
+  modal,
+  FrontImage,
+  BackImage
 }) {
   // const [previewUrl, setPreviewUrl] = useState(null);
   // const [show, setShow] = useState(false);
@@ -201,6 +201,7 @@ function Designer({
           className="absolute top-0 right-0"
         >
           <button
+            className="border p-1 rounded-lg"
             onClick={() =>
               setCanvasSide(canvasSide === "back" ? "front" : "back")
             }
