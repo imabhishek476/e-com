@@ -61,7 +61,7 @@ function index() {
   const [selected, setSelected] = useState({
     color: "",
     size: "",
-    page: 3
+    page: 1
   });
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
