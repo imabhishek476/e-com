@@ -224,7 +224,7 @@ function index() {
               {/* <p>Preview</p> */}
             </li>
           </ul>
-          <div className="flex justify-between w-full text-xs">
+          <div className="flex justify-between w-full text-xs font-semibold text-pink-600">
             <div>Pick Color & size</div>
             <div className="pr-8">Design</div>
             <div className="pr-3">Preview</div>
