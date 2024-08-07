@@ -16,6 +16,7 @@ import {
 import { RiTruckFill } from "react-icons/ri";
 import { VscSettings } from "react-icons/vsc";
 import { GoDotFill } from "react-icons/go";
+import useCartStore from "../../app/useCartStore";
 
 function Navbar({page}) {
   const [isUser, setIsUser] = useState(false);
@@ -24,6 +25,7 @@ function Navbar({page}) {
   const cookie = Cookies.get('accessToken')
   const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
   const navigate = useNavigate();
+  const {clearCart} = useCartStore()
 
   const checkUserExistence = () => {
     if (cookies["accessToken"]) {
@@ -131,6 +133,7 @@ function Navbar({page}) {
                       if (isUser) {
                         Cookies.remove("accessToken");
                         // localStorage.clear();
+                        clearCart();
                         window.location.reload();
                         // navigate("/customer/login");
                       } else {
