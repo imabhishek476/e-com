@@ -98,7 +98,7 @@ function Navbar({page}) {
                   {userProfile?.firstname ? `Welcome, ${userProfile?.firstname}` : "Welcome to Vibepulse"}
                 </div>
                 <hr className="" />
-                <ul className="px-6 space-y-2 text-xs text-center">
+                <ul className="px-3 space-y-2 text-xs text-center">
                   <li className="flex items-center cursor-pointer">
                     <i className="text-blue-800">
                       <MdLocationPin />
@@ -130,7 +130,7 @@ function Navbar({page}) {
                     onClick={() => {
                       if (isUser) {
                         Cookies.remove("accessToken");
-                        localStorage.clear();
+                        // localStorage.clear();
                         window.location.reload();
                         // navigate("/customer/login");
                       } else {

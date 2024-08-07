@@ -9,9 +9,27 @@ import Banner from "./components/Banner/index";
 import Gurrantee from "./components/Service/Gurrantee";
 import ProductCategory from "./components/Products/Category";
 import NewArrival from "./components/Products/NewArrival";
+import { useEffect } from "react";
+import useCartStore from "./app/useCartStore";
+import { getCartByUser, postCartToBackend } from "./api/cart";
 
 
 function App() {
+  const {savedCartFromBackend} = useCartStore()
+
+
+  const handleGetCart = async () =>{
+    const cart = await getCartByUser()
+    console.log(cart)
+    if(cart?.id){
+      savedCartFromBackend(cart)
+    }
+  }
+
+  useEffect( ()=>{
+    handleGetCart()
+  },[])
+  
 
   return (
     <>

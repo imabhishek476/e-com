@@ -87,7 +87,7 @@ const sideList = [
   }
 ];
 
-const Sidebar = () => {
+const Sidebar = ({page}) => {
   const [open, setOpen] = useState(true);
   const toggleShop = () => setOpen(!open);
   const navigate = useNavigate();
@@ -101,7 +101,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className=" bg-white">
+    <div className={` bg-white ${page==='custom'? 'pointer-events-none': ''}`}>
       <div className="m-4 bg-transparent">
         <img
           className="w-[10vw] bg-transparent object-cover"

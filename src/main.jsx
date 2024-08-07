@@ -13,13 +13,13 @@ import MostPopular from './routes/MostPopular'
 import Profile from './routes/Profile'
 import Customize from './routes/Customize'
 import CustomDesign from './routes/CustomDesign'
+import ViewProduct from './routes/ViewProduct/index.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
 import { NextUIProvider } from '@nextui-org/react'
-import Sidebar from './components/Navbar/Sidebar.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const router = createBrowserRouter([
@@ -76,9 +76,17 @@ const router = createBrowserRouter([
     element: <Terms/>,
   },
   {
-    path: "/custom-design/:pid/*",
+    path: "/custom-design/:pid",
     element: <CustomDesign/>,
   },
+  {
+    path: "/product-info/:url/*",
+    element: <ViewProduct/>,
+  },
+  {
+    path: '/*',
+    element : <div>Not Found</div>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

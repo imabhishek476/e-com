@@ -8,10 +8,10 @@ import { FcGoogle } from "react-icons/fc";
 import { useEffect, useRef, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { CustomerLogin } from "../../api/login";
-import Cookies from "js-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
 import { facebookAuth, googleAuth } from "../../api/socialAuth";
 import FacebookLogin from "@greatsumini/react-facebook-login";
+import Cookies from "js-cookie";
 
 function Index() {
   const [loading, setLoading] = useState(false);
