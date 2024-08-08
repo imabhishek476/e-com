@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import Jogger from "../../assets/images/cart/Jogger_Olive.png";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
-import { RemoveFromCart } from "../../utils/cart";
 import useCartStore from "../../app/useCartStore";
+import { useState } from "react";
 // import nearestColor from "nearest-color";
 
 // const getColorName = (hex) => {

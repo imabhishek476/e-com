@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import Product from "./Product";
-import { cartArray } from "../../utils/cart";
 import useCartStore from "../../app/useCartStore";
 import { getProductByIds } from "../../api/product";
 import emptyCart from "../../assets/empty-cart.svg";
