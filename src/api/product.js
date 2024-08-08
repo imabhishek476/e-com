@@ -7,10 +7,30 @@ const access = Cookies.get("accessToken");
 export const getAllProducts = async () => {
   try {
     const headers = new Headers();
-    headers.append("Content-Type", "multipart/form-data");
-    headers.append("Authorization", "Bearer " + access);
+    // headers.append("Authorization", "Bearer " + access);
     headers.append("Content-Type", "application/json");
     const response = await fetch(apiUrl + "/product", {
+      method: "GET",
+      headers: headers
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      return data?.data;
+    } else {
+      return data.message || "Error submitting product data";
+    }
+  } catch (error) {
+    console.error("Error in getting product list:", error);
+    throw error;
+  }
+};
+export const getAllCustomProducts = async () => {
+  try {
+    const headers = new Headers();
+    headers.append("Authorization", "Bearer " + access);
+    headers.append("Content-Type", "application/json");
+    const response = await fetch(apiUrl + "/product/custom", {
       method: "GET",
       headers: headers
     });
@@ -30,7 +50,6 @@ export const getAllProducts = async () => {
 export const getProductByUrl = async (url) => {
   try {
     const headers = new Headers();
-    headers.append("Content-Type", "multipart/form-data");
     headers.append("Authorization", "Bearer " + access);
     headers.append("Content-Type", "application/json");
     const response = await fetch(
@@ -49,6 +68,30 @@ export const getProductByUrl = async (url) => {
     }
   } catch (error) {
     console.error("Error in getting product list:", error);
+    throw error;
+  }
+};
+export const getCustomProductById = async (id) => {
+  try {
+    const headers = new Headers();
+    headers.append("Authorization", "Bearer " + access);
+    headers.append("Content-Type", "application/json");
+    const response = await fetch(
+      apiUrl + "/product/custom/id?" + `id=${encodeURIComponent(id)}`,
+      {
+        method: "GET",
+        headers: headers
+      }
+    );
+    const data = await response.json();
+
+    if (response.ok) {
+      return data;
+    } else {
+      return data.message || "Error submitting product data";
+    }
+  } catch (error) {
+    console.error("Error in getting product:", error);
     throw error;
   }
 };

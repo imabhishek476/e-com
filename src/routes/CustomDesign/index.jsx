@@ -3,34 +3,27 @@ import Layout from "../../Layout";
 import Designer from "../../components/FabricJs/Designer";
 import Preview from "../../components/FabricJs/Preview";
 import Snackbar from "../../components/Warning/Snackbar";
-import FrontImage from "../../assets/custom/FrontTshirt.png";
-import BackImage from "../../assets/custom/backView.png";
 import { IoCloudUploadOutline, IoImage, IoText } from "react-icons/io5";
-import { IoMdImages } from "react-icons/io";
 import TextModal from "../../components/FabricJs/Modal/TextModal";
 import UploadModal from "../../components/FabricJs/Modal/UploadModal";
 import GalleryModal from "../../components/FabricJs/Modal/GalleryModal";
-import html2canvas from "html2canvas";
+import DomToImage from "dom-to-image";
 import useCustomStore from "../../app/customStore";
 import PreviewTab from "../../components/FabricJs/PreviewTab";
+import { useNavigate, useParams } from "react-router-dom";
+import { getCustomProductById } from "../../api/product";
+import useCartStore from "../../app/useCartStore";
 
-const size = ["S", "M", "L", "XL", "XXL"];
-const color = [
-  "#FF0000",
-  "black",
-  "#0062CC",
-  "#F000D8",
-  "green",
-  "#EBFF00"
-  // "#00FF38",
-  // "#4F2323",
-  // "#3C3C3C",
-  // "#CC0CD0",
-  // "#FF8A00",
-  // "#31BD00"
-];
-
-function index() {
+function Index() {
+  const params= useParams()
+  const navigation= useNavigate()
+  const [size,setSize] = useState([]);
+  const [color,setColor] = useState([]);
+  const [discountPrice,setdiscountPrice] = useState();
+  const [FrontImage,setFrontImage] = useState()
+  const [BackImage,setBackImage] = useState() 
+  ///from backend
+  //
   const tshirtDivRef = useRef(null);
   const [activeCanvas, setActiveCanvas] = useState(false);
   const [textValue, setTextValue] = useState("");
@@ -38,7 +31,8 @@ function index() {
   const [canvasBack, setCanvasBack] = useState(null); //fabricBack
   const [modal, setModal] = useState("");
   const [pageStack, setPageStack] = useState([]);
-  const { setPreview } = useCustomStore();
+  const { setPreview , frontPreview, backPreview} = useCustomStore();
+  const {addItem} = useCartStore()
   const checkPageStack = (num) => {
     setModal("");
     if (pageStack.includes(num)) {
@@ -63,42 +57,54 @@ function index() {
     size: "",
     page: 1
   });
-  // useEffect(() => {
-  //   const handleBeforeUnload = (event) => {
 
-  //     alert("User attempted to reload the site.");
-  //     event.preventDefault(); // Standard way to prevent the default action
-  //     event.returnValue = ''; // For older browsers
-  //   };
-
-  //   window.addEventListener('beforeunload', handleBeforeUnload);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   };
-  // }, []);
+  const handleAddToCart = async() =>{
+      try {
+        const node = document.getElementById('frontPreviewImg');
+        const dataUrl = await DomToImage.toPng(node);
+        // console.log(dataUrl)
+        // let obj = [
+        //   {showCaseImg: dataUrl},
+        //   {
+        //     price: discountPrice
+        //   },
+        //   { id: params.pid },
+        //   { color: selected.color },
+        //   { size: selected.size },
+        //   {frontDesign: frontPreview},
+        //   {backDesign:backPreview},
+        // ];
+        addItem(params.pid, 1, discountPrice, {
+          color: selected.color,
+          size: selected.size,
+          frontDesign: frontPreview,
+          backDesign : backPreview,
+          showCaseImg: dataUrl
+        });
+        navigation('/cart')
+      } catch (error) {
+        console.error("Error capturing the T-shirt design:", error);
+      }
+  }
 
   const generatePreview = () => {
     canvas.discardActiveObject();
     canvas.renderAll();
     canvasBack.discardActiveObject();
     canvasBack.renderAll();
-    // console.log(canvas.toJSON());
-    const dataUrlFront = canvas.toDataURL("image/png");
-    const dataUrlBack = canvasBack.toDataURL("image/png");
-    setPreview({ front: dataUrlFront, back: dataUrlBack });
-    // if (tshirtDivRef.current) {
-    //   html2canvas(tshirtDivRef.current).then((canvas) => {
-    //     const dataUrl = canvas.toDataURL("image/png");
-    //     setPreviewUrl(dataUrl);
-    //   });
-    // }
+
+    const dataUrlFront = canvas.toSVG();
+    const dataUrlBack = canvasBack.toSVG();
+
+    setPreview({
+      frontPreview: dataUrlFront,
+      backPreview: dataUrlBack
+    });
   };
 
   useEffect(() => {
     const handleSelection = (event) => {
       const activeObject = event;
-      console.log(activeObject);
       if (
         activeObject?.selected?.length < 2 &&
         activeObject.selected[0].type === "i-text"
@@ -134,7 +140,6 @@ function index() {
   useEffect(() => {
     const handleSelection = (event) => {
       const activeObject = event;
-      console.log(activeObject);
       if (
         activeObject?.selected?.length < 2 &&
         activeObject.selected[0].type === "i-text"
@@ -167,9 +172,23 @@ function index() {
     };
   }, [canvasBack]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getCustomProductById(params.pid);
+      setdiscountPrice(data?.discountPrice)
+      setSize(()=>{
+         return data?.variants?.filter(variant => variant.title === "Size").map(variant => variant.value)
+      })
+      setColor(()=>{
+         return data?.variants?.filter(variant => variant.title === "Color")
+      })
+    }
+    fetchData();
+  }, []);
+
   return (
     <Layout page={"custom"}>
-      <div className="flex flex-col items-center w-full h-screen overflow-y-hidden mt-[64px]">
+      <div className="flex flex-col items-center w-full h-screen overflow-y-hidden ">
         <div className="w-[384px] fixed">
           <ul className="flex justify-between items-center w-[90%] mx-5">
             <li className="text-center text-xs text-pink-600">
@@ -247,15 +266,18 @@ function index() {
                 {color &&
                   color.map((item) => {
                     return (
-                      <div key={item} className="m-2 text-center">
+                      <div key={item?._id} className="m-2 text-center">
                         <button
                           style={{
                             backgroundColor:
-                              selected.color === item ? item : item,
-                            border: selected.color === item && `1px solid black`
+                              selected.color === item ? item.value : item?.value,
+                            border: selected.color === item.value && `1px solid black`
                           }}
-                          onClick={() =>
-                            setSelected({ ...selected, color: item })
+                          onClick={() =>{
+                              setSelected({ ...selected, color: item.value })
+                              setFrontImage(item?.frontImage)
+                              setBackImage(item?.backImage)
+                            }
                           }
                           className={`p-[30px] py-[30px] rounded-full`}
                         ></button>
@@ -268,12 +290,12 @@ function index() {
               </div>
               <div className="flex flex-wrap gap-3">
                 {size &&
-                  size.map((item) => {
+                  size.map((item,index) => {
                     return (
                       <>
                         <div className="flex flex-col items-center m-2 w-[45px] text-[10px]">
                           <button
-                            key={item}
+                            key={index}
                             onClick={() =>
                               setSelected({ ...selected, size: item })
                             }
@@ -283,9 +305,9 @@ function index() {
                                 selected.size === item && `yellow`
                             }}
                           >
-                            {item}
+                            {item.toUpperCase()}
                           </button>
-                          <p className=" text-red-500">5 Left</p>
+                          {/* <p className=" text-red-500">5 Left</p> */}
                         </div>
                       </>
                     );
@@ -301,7 +323,6 @@ function index() {
                 modal={modal}
                 setCanvas={setCanvas}
                 canvas={canvas}
-                tshirtDivRef={tshirtDivRef}
                 canvasBack={canvasBack}
                 setCanvasBack={setCanvasBack}
                 FrontImage={FrontImage}
@@ -311,7 +332,7 @@ function index() {
           )}
           {selected.page === 3 && (
             <div className="container h-screen relative">
-              <Preview FrontImage={FrontImage} BackImage={BackImage} />
+              <Preview FrontImage={FrontImage} BackImage={BackImage}/>
             </div>
           )}
           <div className="flex flex-col w-full sticky bottom-0 z-0">
@@ -351,19 +372,21 @@ function index() {
             <div className="flex 2-full">
               <button
                 disabled={
-                  selected.page === 3 || !selected.color || !selected.size
+                  !selected.color || !selected.size
                 }
                 onClick={() => {
-                  setPageStack((p) =>
-                    p && p.includes(selected.page)
-                      ? [...p]
-                      : [...p, selected.page]
-                  );
-                  selected.page === 1
-                    ? localStorage.removeItem("fabric-store")
-                    : "";
-                  setSelected({ ...selected, page: selected.page + 1 });
-
+                  selected.page === 3 && handleAddToCart();
+                  if(selected.page !== 3){
+                    setPageStack((p) =>
+                      p && p.includes(selected.page)
+                        ? [...p]
+                        : [...p, selected.page]
+                    );
+                    selected.page === 1
+                      ? localStorage.removeItem("fabric-store")
+                      : "";
+                    setSelected({ ...selected, page: selected.page + 1 });
+                  }
                   selected.page === 2 && generatePreview();
                 }}
                 className="bg-[#050A44] py-[0.4rem] w-full text-white"
@@ -402,4 +425,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

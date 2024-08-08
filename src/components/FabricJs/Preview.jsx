@@ -1,50 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PiFlipHorizontalFill } from "react-icons/pi";
-import red from '../../assets/custom/red.png'
 import useCustomStore from "../../app/customStore";
-import DomToImage from "dom-to-image";
 
-function Preview({ FrontImage, BackImage }) {
+function Preview({ FrontImage, BackImage}) {
   const [canvasSide, setCanvasSide] = useState("front");
   const {frontPreview, backPreview} = useCustomStore()
-  console.log(frontPreview, backPreview)
 
-
-  useEffect(()=>{
-
-    const captureElementAsImageFront = (element) => {
-        DomToImage.toPng(element, { quality: 1.0 })
-          .then((dataUrl) => {
-            // Create an image element
-            const img = new Image();
-            img.src = dataUrl;
-            console.log(img)
-            // document.body.appendChild(img);
-          })
-          .catch((error) => {
-            console.error('Failed to capture element as image:', error);
-          });
-      };
-    const captureElementAsImageBack = (element) => {
-        DomToImage.toPng(element, { quality: 1.0 })
-          .then((dataUrl) => {
-            // Create an image element
-            const img = new Image();
-            img.src = dataUrl;
-            console.log(img)
-            // document.body.appendChild(img);
-          })
-          .catch((error) => {
-            console.error('Failed to capture element as image:', error);
-          });
-      };
-      
-      // Usage: Pass the DOM element you want to capture
-      const elementFront = document.getElementById('frontPreviewImg');
-      const elementBack = document.getElementById('backPreviewImg');
-      captureElementAsImageFront(elementFront);
-      captureElementAsImageBack(elementBack);
-  },[])
 
   return (
     <div id="backgroundpicture" style={{ position: "relative" }}>
@@ -63,12 +24,13 @@ function Preview({ FrontImage, BackImage }) {
             <div
               className="w-full absolute top-[52px] left-[98px]"
             >
-              <img
+              {/* <img
                 src={frontPreview}
                 width={160}
                 height={280}
                 className="object-cover"
-              />
+              /> */}
+              <div className="w-[30px] h-[30px]" dangerouslySetInnerHTML={{ __html: frontPreview }} />
             </div>
           </div>
         )}
@@ -83,12 +45,13 @@ function Preview({ FrontImage, BackImage }) {
             <div
               className="w-full absolute top-[52px] left-[98px]"
             >
-              <img
+              {/* <img
                 src={backPreview}
                 width={160}
                 height={280}
                 className="object-cover"
-              />
+              /> */}
+              <div className="w-[30px] h-[30px]" dangerouslySetInnerHTML={{ __html: backPreview }} />
             </div>
           </div>
         )}

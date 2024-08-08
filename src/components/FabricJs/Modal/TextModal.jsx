@@ -206,7 +206,7 @@ function TextModal({
       {showTab === "fontFamily" && (
         <div className="my-1 bg-black text-white">
           <div className="flex overflow-x-scroll scrollbar-hidden">
-            <div className="flex flex-nowrap gap-2">
+            <div className="flex flex-nowrap gap-4">
               {fontFamily &&
                 fontFamily.map((i) => {
                   return (
@@ -215,10 +215,10 @@ function TextModal({
                       style={{
                         backgroundColor: currentFontFamily === i && "green"
                       }}
-                      className="text-center text-[11px]"
+                      className="text-center text-md"
                       key={i}
                     >
-                      <h4 className=" font-semibold" style={{ fontFamily: i }}>
+                      <h4 className="text-xs font-semibold" style={{ fontFamily: i }}>
                         Abc
                       </h4>
                       <span>{i}</span>

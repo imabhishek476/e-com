@@ -70,28 +70,28 @@ function PreviewTab() {
             <li className="flex items-center gap-4">
               <FaListUl className="text-lg" />
               <div>
-                <h5 className="font-bold font-[Comic]">Product Description</h5>
+                <h5 className="font-bold">PRODUCT DESCRIPTION</h5>
                 <p>Pure Black Customize Over-size T-shirt</p>
               </div>
             </li>
             <li className="flex items-center gap-4">
               <LiaTapeSolid className="text-xl" />
               <div>
-                <h5 className="font-bold font-[Comic]">REGULAR FIT</h5>
+                <h5 className="font-bold">REGULAR FIT</h5>
                 <p>Fitted chest and straight on waist down</p>
               </div>
             </li>
             <li className="flex items-center gap-4">
               <VscJersey className="text-xl" />
               <div>
-                <h5 className="font-bold font-[Comic]">SINGLE JERSEY</h5>
+                <h5 className="font-bold">SINGLE JERSEY</h5>
                 <p>Classic, lightweight jersey fabric</p>
               </div>
             </li>
             <li className="flex items-center gap-4">
               <GiReturnArrow className="text-4xl" />
               <div>
-                <h5 className="font-bold font-[Comic]">NO RETURNS</h5>
+                <h5 className="font-bold">NO RETURNS</h5>
                 <p>
                   This customize t-shirt is not returnable, This design is only
                   for you .add description according to you that suitable for
@@ -102,7 +102,7 @@ function PreviewTab() {
             <li className="flex items-center gap-4">
               <TbTruckDelivery className="text-2xl" />
               <div>
-                <h5 className="font-bold font-[Comic]">GET BY THIS</h5>
+                <h5 className="font-bold">GET BY THIS</h5>
                 <p>
                   They say good things take time! Your Custom printed item will
                   ship in 3 to 5 days.

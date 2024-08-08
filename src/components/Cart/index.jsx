@@ -5,6 +5,7 @@ import Product from "./Product";
 import { cartArray } from "../../utils/cart";
 import useCartStore from "../../app/useCartStore";
 import { getProductByIds } from "../../api/product";
+import emptyCart from "../../assets/empty-cart.svg";
 
 function index() {
   const [cartItems, setCartItems, cart] = useState(null);
@@ -32,48 +33,42 @@ function index() {
 
   return (
     <>
-      <section className=" py-8 antialiased dark:bg-gray-900">
+      <section className="py-8 dark:bg-gray-900">
         <div className="bg-gray-700 flex items-center justify-center p-10 m-4 rounded-lg">
           <h1 className="text-6xl text-white font-mono">SHOPING CART</h1>
         </div>
-        <div className="max-w-screen-xl px-4 2xl:px-0">
-          {/* <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
-            <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-              <div className="shrink-0 md:order-1 mx-3">Product</div>
-              <div className="shrink-0 md:order-5">QUANTITY</div>
-              <div className="shrink-0 md:order-3">TOTAL</div>
-              <div className="shrink-0 md:order-4">TOTAL</div>
-              <div className="shrink-0 md:order-4">TOTAL</div>
-              <div className="shrink-0 md:order-4">TOTAL</div>
-              <div className="shrink-0 md:order-4">TOTAL</div>
+        <div className="container">
+          <div className="w-full lg:max-w-8xl xl:max-w-full">
+            <div className="space-y-6">
+              {/* Product */}
+              {cartItems?.length > 0 ? (
+                cartItems.map((item, index) => {
+                  return (
+                    <Product
+                      key={item?._id}
+                      id={item?._id}
+                      img={
+                        item?.productImage ||
+                        getProductDetails(item?._id).showCaseImg
+                      }
+                      price={item.discountPrice}
+                      title={item.productName}
+                      urlSlug={item?.productImage && item?.urlSlug}
+                      color={getProductDetails(item?._id).color}
+                      size={getProductDetails(item?._id).size}
+                      totalQuantity={getProductDetails(item?._id).quantity}
+                    />
+                  );
+                })
+              ) : (
+                <div className="text-center w-[30%] h-screen mx-auto">
+                  <img src={emptyCart} alt="" />
+                  <h1 className="text-2xl">Your Cart is Empty</h1>
+                </div>
+              )}
             </div>
-          </div> */}
-          <div className="">
-            <div className="w-full flex-none lg:max-w-5xl xl:max-w-5xl">
-              <div className="space-y-6">
-                {/* Product */}
-                {cartItems?.length > 0 ? (
-                  cartItems.map((item, index) => {
-                    return (
-                      <Product
-                        key={item?._id}
-                        id={item?._id}
-                        img={item.productImage}
-                        price={item.discountPrice}
-                        title={item.productName}
-                        urlSlug={item?.urlSlug}
-                        color={getProductDetails(item?._id).color}
-                        size={getProductDetails(item?._id).size}
-                        totalQuantity={getProductDetails(item?._id).quantity}
-                      />
-                    );
-                  })
-                ) : (
-                  <div>No Items in cart</div>
-                )}
-              </div>
-            </div>
-
+          </div>
+          <div className="w-full flex-none lg:max-w-5xl xl:max-w-full">
             {cartItems?.length > 0 && (
               <div className="flex justify-end my-4 ml-1 gap-3">
                 <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
@@ -153,7 +148,7 @@ function index() {
                           Total
                         </dt>
                         <dd className="text-base font-bold text-gray-900 dark:text-white">
-                          ₹ {overallCartValue}
+                          ₹ {overallCartValue.toFixed(2)}
                         </dd>
                       </dl>
                     </div>

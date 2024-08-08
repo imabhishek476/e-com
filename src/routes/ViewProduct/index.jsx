@@ -62,7 +62,7 @@ function ViewProduct() {
       // console.log(arr);
       setSelectedColor({
         ...selectedColor,
-        color: getProductDetails(data._id).color || arr[0]?.values[0],
+        color: getProductDetails(data._id).color || arr[0]?.values,
         images: arr[0]?.images
       });
       return arr;
@@ -76,7 +76,7 @@ function ViewProduct() {
       }
       setSelected({
         ...selected,
-        size: getProductDetails(data._id).size || arr[0]?.values[0]
+        size: getProductDetails(data._id).size || arr[0]?.values
       });
       return arr;
     });
@@ -171,16 +171,16 @@ function ViewProduct() {
                       key={i?._id}
                       className="p-4 rounded-full"
                       style={{
-                        backgroundColor: i?.values[0],
+                        backgroundColor: i?.values,
                         border:
-                          selectedColor.color === i?.values[0]
+                          selectedColor.color === i?.values
                             ? "2px solid black"
                             : "0.5px dashed black"
                       }}
                       onClick={() =>
                         setSelectedColor({
                           ...selectedColor,
-                          color: i?.values[0],
+                          color: i?.values,
                           images: i?.images
                         })
                       }
@@ -202,19 +202,19 @@ function ViewProduct() {
                         onClick={() => {
                           setSelected({
                             ...selected,
-                            size: i?.values[0]
+                            size: i?.values
                           });
                         }}
                         key={i?._id}
                         className="p-2 px-4 border-2 border-black rounded-full text-md"
                         style={{
                           border:
-                            selected.size === i?.values[0]
+                            selected.size === i?.values
                               ? "2px solid black"
                               : "0.5px dashed black"
                         }}
                       >
-                        {i?.values[0]}
+                        {i?.values}
                       </button>
                     );
                   })}

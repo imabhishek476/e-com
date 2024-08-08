@@ -68,13 +68,13 @@ const shirtIMage = [
 function index() {
   const [PopularProduct, setPopularProduct] = useState(null);
 
-  const product = async () => {
+  const handleGetProduct = async () => {
     const data = await getAllProducts();
     setPopularProduct(data);
   };
 
   useEffect(() => {
-    product();
+    handleGetProduct();
   }, []);
 
   return (

@@ -20,9 +20,9 @@ function Product({ id, img, price, title, urlSlug, color, size, totalQuantity })
   }
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6">
+    <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6 p-3">
       <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-        <a href={`/product-info/${urlSlug}`} className="shrink-0 md:order-1">
+        <a href={urlSlug ?`/product-info/${urlSlug}` : '/customize'} className="shrink-0 md:order-1">
           <img className="h-full w-28" src={img} alt="imac image" />
         </a>
 

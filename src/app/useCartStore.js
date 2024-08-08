@@ -29,6 +29,7 @@ const CartStore = (set, get) => ({
   },
   addItem: (productId, quantity, price, variant) =>
     set((state) => {
+      console.log("add")
       const existingItem = state.cart.items.find(
         (item) => item.productId === productId
       );
@@ -41,13 +42,14 @@ const CartStore = (set, get) => ({
               item.productId === productId
                 ? {
                     ...item,
-                    quantity: item.quantity + quantity,
-                    price: item.price + price
+                    quantity: quantity,
+                    price: price,
+                    ...variant
                   }
                 : item
             ),
             totalPrice:
-              state.cart.totalPrice + quantity * (price / existingItem.quantity)
+              state.cart.totalPrice + quantity * price
           }
         };
       } else {
@@ -60,8 +62,7 @@ const CartStore = (set, get) => ({
                 productId: productId,
                 quantity,
                 price,
-                color: variant?.color, // Example variant
-                size: variant?.size // Example variant
+                ...variant
               }
             ],
             totalPrice: state.cart.totalPrice + quantity * price
@@ -136,8 +137,8 @@ const CartStore = (set, get) => ({
     const state = get();
     const product = state.cart.items.find((item) => item.productId === productId);
     if (product) {
-      const { productId, quantity, price, color, size } = product;
-      return { productId, quantity, price, color, size };
+      const { productId, quantity, price, color, size, showCaseImg } = product;
+      return { productId, quantity, price, color, size, showCaseImg };
     }
     return {totalPrice: state.cart.totalPrice, cart: state.cart};
   },

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import * as fabric from "fabric";
-import html2canvas from "html2canvas";
 import FabricCanvas from "./FabricCanvas";
 import { PiFlipHorizontalFill } from "react-icons/pi";
 import useCustomStore from "../../app/customStore";
@@ -12,17 +11,12 @@ import {
 } from "./DeleteControl";
 
 function Designer({
-  canvas,
   setCanvas,
-  tshirtDivRef,
-  canvasBack,
   setCanvasBack,
   modal,
   FrontImage,
   BackImage
 }) {
-  // const [show, setShow] = useState(false);
-  // const tshirtDivRef = useRef(null);
 
   const {
     frontFabric,
@@ -127,44 +121,12 @@ function Designer({
     };
   }, [canvasSide]);
 
-  useEffect(() => {
-    const handleSelection = (event) => {
-      const activeObject = event;
-      if (
-        activeObject?.selected?.length < 2 &&
-        activeObject.selected[0].type === "i-text"
-      ) {
-        // setShow(true);
-      } else {
-        // setShow(false);
-      }
-    };
-
-    document.addEventListener(
-      "keydown",
-      (e) => {
-        return e.code == "Delete"
-          ? canvas.remove(canvas.getActiveObject())
-          : false;
-      },
-      false
-    );
-
-    canvas?.on("selection:created", handleSelection);
-    canvas?.on("selection:cleared", handleSelection);
-    canvas?.on("selection:updated", handleSelection);
-    return () => {
-      canvas?.off("selection:created", handleSelection);
-      canvas?.off("selection:updated", handleSelection);
-    };
-  }, [canvas]);
-
   return (
     <>
       <div id="backgroundpicture" style={{ position: "relative" }}>
         <div
           name="Front"
-          ref={tshirtDivRef}
+          // ref={tshirtDivRef}
           className=""
           style={{ position: "relative", backgroundColor: "transparent" }}
         >
