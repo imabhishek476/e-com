@@ -80,8 +80,16 @@ const router = createBrowserRouter([
     element: <CustomDesign/>,
   },
   {
-    path: "/product-info/:url/*",
+    path: "/product-info/:url",
     element: <ViewProduct/>,
+  },
+  {
+    path: "/product-review/:url/*",
+    element: <div>Review</div>,
+  },
+  {
+    path: "/product-review/:url/*",
+    element: <div>Review</div>,
   },
   {
     path: '/*',

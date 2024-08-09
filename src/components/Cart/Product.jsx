@@ -9,7 +9,7 @@ import { useState } from "react";
 //   return color ? color.name : false;
 // };
 
-function Product({ id, img, price, title, urlSlug, color, size, totalQuantity }) {
+function Product({ id, img, price, title, urlSlug, color, size, totalQuantity , setUpdate}) {
   const [quantity, setQuantity] = useState(totalQuantity);
   const {updateCart, removeItem} = useCartStore()
 
@@ -39,6 +39,7 @@ function Product({ id, img, price, title, urlSlug, color, size, totalQuantity })
                       handleUpdateCart(nQ)
                       return nQ
                     });
+                    setUpdate((p)=>!p)
                     // window.location.reload()
                   }}
                   className="p-1 rounded-full bg-white w-full"
@@ -54,6 +55,7 @@ function Product({ id, img, price, title, urlSlug, color, size, totalQuantity })
                       handleUpdateCart(nQ)
                       return nQ
                     });
+                    setUpdate((p)=>!p)
                     // window.location.reload()
                   }}
                   className="p-1 rounded-full bg-white w-full"

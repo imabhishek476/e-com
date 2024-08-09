@@ -6,7 +6,7 @@ import useCartStore from "../../app/useCartStore";
 import { getProductByIds } from "../../api/product";
 import emptyCart from "../../assets/empty-cart.svg";
 
-function index() {
+function index({setUpdate}) {
   const [cartItems, setCartItems, cart] = useState(null);
   const { getAllItems, getProductDetails } = useCartStore();
   const [deliveryCharge] = useState(75);
@@ -44,6 +44,7 @@ function index() {
                 cartItems.map((item, index) => {
                   return (
                     <Product
+                      setUpdate={setUpdate}
                       key={item?._id}
                       id={item?._id}
                       img={
