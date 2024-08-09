@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { debounce } from 'lodash';
 import Cart from "../../components/Cart";
 import Layout from "../../Layout";
 import { postCartToBackend } from "../../api/cart";
 import useCartStore from "../../app/useCartStore";
 
 function index() {
-  const { getProductDetails, savedIdFromBackend ,updateCart} = useCartStore();
+  const { getProductDetails, savedIdFromBackend} = useCartStore();
   const [update,setUpdate] = useState(false)
 
   const handlePostCartToUser = async () => {
@@ -14,8 +15,13 @@ function index() {
     savedIdFromBackend(data?._id);
   };
 
+
+  const debouncedPostCartToUser = useCallback(debounce(handlePostCartToUser, 1500), []);
   useEffect(() => {
-    handlePostCartToUser();
+    debouncedPostCartToUser();
+  
+    // Cleanup function to cancel debounced calls if component unmounts
+    return () => debouncedPostCartToUser.cancel();
   }, [update]);
 
   return (

@@ -6,6 +6,16 @@ const access = Cookies.get('accessToken');
 
 export const postCartToBackend = async (cart)=>{
     try {
+        // if(!access){
+        //   throw new Error("User Not Found")
+        // }
+        // const filteredCart = {
+        //   ...cart,
+        //   items: cart.items.map(item => {
+        //     const { showCaseImg, ...rest } = item;//seprated showCaseImg, bcz thats too large
+        //     return rest;
+        //   })
+        // };
         let headers = new Headers();
         headers.append('Authorization', 'Bearer ' + access);
         headers.append("Content-Type", "application/json");
