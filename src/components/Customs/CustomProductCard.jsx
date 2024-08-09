@@ -7,7 +7,7 @@ function CustomProductCard({productImg, productName, discountPrice, url}) {
   return (
     <div className="cursor-pointer">
       <div onClick={()=>navigate(`/custom-design/${url}`)} className="rounded-lg">
-        <img loading="lazy" src={productImg} alt="" srcSet=""/>
+        <img src={productImg} alt="product-image"/>
       </div>
       <div className="m-1">
         <p className="text-sm text-gray-500 font-sans">{productName}</p>
