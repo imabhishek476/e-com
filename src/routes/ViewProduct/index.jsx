@@ -110,13 +110,13 @@ function ViewProduct() {
     <Layout page={"view"}>
       <div className="block md:flex sm gap-6 h-screen container">
         {/* Left Side  */}
-        <div className="w-full overflow-y-auto scrollbar-hide">
+        <div className="w-[50%] overflow-y-auto scrollbar-hide">
           <ViewProductCorousel
             images={selectedColor.images || productData?.productImage}
           />
         </div>
         {/* Right Side  */}
-        <div className="overflow-y-auto scrollbar-hide text-sm space-y-4">
+        <div className="w-[50%] overflow-y-auto scrollbar-hide text-sm space-y-4">
           <div>
             <h1 className="font-semibold text-3xl">
               {productData?.productName}

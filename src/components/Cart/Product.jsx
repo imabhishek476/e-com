@@ -35,10 +35,11 @@ function Product({ id, img, price, title, urlSlug, color, size, totalQuantity })
                   disabled={quantity === 1}
                   onClick={() => {
                     setQuantity((p) => {
-                      handleUpdateCart(p-1)
-                      p = p - 1
+                      const nQ = p - 1
+                      handleUpdateCart(nQ)
+                      return nQ
                     });
-                    window.location.reload()
+                    // window.location.reload()
                   }}
                   className="p-1 rounded-full bg-white w-full"
                 >
@@ -49,10 +50,11 @@ function Product({ id, img, price, title, urlSlug, color, size, totalQuantity })
                   disabled={quantity === 10}
                   onClick={() => {
                     setQuantity((p) => {
-                      handleUpdateCart(p+1)
-                      p = p + 1
+                      const nQ = p + 1
+                      handleUpdateCart(nQ)
+                      return nQ
                     });
-                    window.location.reload()
+                    // window.location.reload()
                   }}
                   className="p-1 rounded-full bg-white w-full"
                 >

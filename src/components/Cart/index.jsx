@@ -137,7 +137,7 @@ function index() {
                             GST (18%)
                           </dt>
                           <dd className="text-base font-medium text-gray-900 dark:text-white">
-                            ₹ {gst.toFixed(2)}
+                            ₹ {(gst).toFixed(2)}
                           </dd>
                         </dl>
                       </div>
